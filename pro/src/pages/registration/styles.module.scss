@@ -1,0 +1,54 @@
+.box {
+    @apply w-screen h-screen flex items-center justify-center;
+
+}
+
+.parent {
+    @apply shadow-xl rounded-md overflow-hidden max-w-lg;
+
+}
+
+.heading {
+    @apply text-2xl font-bold text-center text-white my-6;
+
+}
+
+.input {
+    @apply block w-full bg-white bg-opacity-10 border-r-2 border-transparent focus:border-slate-400 outline-none transition-colors px-10 py-3 text-slate-300;
+}
+
+.inputred {
+    @apply block w-full bg-white bg-opacity-10 border-r-2 border-transparent focus:border-slate-400 outline-none transition-colors px-10 py-3 text-rose-300;
+}
+
+.inputBox {
+    @apply relative;
+}
+
+.inputIcn {
+    @apply pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-300;
+}
+
+.inputIcnRight {
+    @apply pointer-events-none absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-300;
+}
+
+.eyeShow {
+    @apply h-full w-10 bg-white absolute right-0 top-0 opacity-0;
+}
+
+.linksBox {
+    @apply pt-2 pb-2 text-center;
+}
+
+.linksLogin {
+    @apply text-sm text-slate-400;
+}
+
+.btnReg {
+    @apply text-white block py-2 w-full transition-colors;
+}
+
+.btnRegbox {
+    @apply bg-orange-500 text-white block w-full transition-colors hover:bg-orange-600;
+}
