@@ -8,6 +8,15 @@ export const registerApi = async body => {
   return data;
 };
 
+export const waterConsumeMonthdApi = async body => {
+  console.log(body);
+  const { data } = await api.post('/waterconsume', body);
+  console.log(data);
+  return data;
+};
+
+
+
 export const client = axios.create({
   baseURL: 'https://goit-node-rest-api-im7k.onrender.com/',
   headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
