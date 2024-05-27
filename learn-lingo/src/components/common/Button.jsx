@@ -1,3 +1,4 @@
+import { theme } from 'assets/styles';
 import styled, { css } from 'styled-components';
 
 const StyledButton = styled.button`
@@ -9,28 +10,28 @@ const StyledButton = styled.button`
   justify-content: center;
 
   font-family: var(--font-family);
-  font-weight: 500;
+  font-weight: 700;
   font-size: 16px;
-  line-height: 150%;
-  letter-spacing: -0.01em;
+  line-height: 125%;
   color: #fff;
 
-  border-radius: 200px;
-  padding: 16px 40px;
+  border-radius: 12px;
+  padding: 14px 39px;
   width: 166px;
-  height: 56px;
+  height: 48px;
 
   margin: ${({ margin }) => margin || '20px 0px 0px 0px'};
   color: ${props => props.color || 'white'};
-  background: ${props => props.background || '#E44848'};
+  background: ${props => props.background || theme.colors.primary};
 
   background-color: ${({ theme }) => theme.animation.cubicBezier};
   box-shadow: ${({ theme }) => theme.shadows.small};
 
+  transition: background ${({ theme }) => theme.animation.cubicBezier},
+    box-shadow ${({ theme }) => theme.animation.cubicBezier};
+
   &:hover {
-    background: #d84343;
-    outline: none;
-    box-shadow: ${({ theme }) => theme.shadows.small};
+    background: ${props => props.backgroundHover || theme.colors.primaryActiv};
   }
 
   align-self: ${props => props.align || 'stretch'};
@@ -42,12 +43,12 @@ const StyledButton = styled.button`
       padding: 16px 32px;
       background-color: ${({ theme }) => theme.colors.inputs};
       color: #101828;
+      transition: border ${({ theme }) => theme.animation.cubicBezier};
 
       &:hover {
         border: 1px solid var(--button);
         background: #f2f4f7;
         outline: none;
-        transition: border ${({ theme }) => theme.animation.cubicBezier};
       }
     `}
 

@@ -4,6 +4,7 @@ export const FormBox = styled.div`
   width: 300px;
 `;
 export const InputBox = styled.div`
+  position: relative;
   width: 100%;
   /* background-color: blue; */
   height: 72px;
@@ -38,4 +39,10 @@ export const InfoInput = styled.p`
   letter-spacing: -0.02em;
   color: rgba(18, 20, 23, 0.7);
   text-align: center;
+`;
+
+export const IconBox = styled.div`
+  position: absolute;
+  top: 14px;
+  right: 10px;
 `;

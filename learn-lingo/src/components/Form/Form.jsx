@@ -3,10 +3,16 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 import { Button } from '../common/Button';
-import { FormBox, InfoInput, InputBox } from './Form.styled';
+import { FormBox, IconBox, InfoInput, InputBox } from './Form.styled';
 import { InputField } from 'components/common/InputField';
+import { IconSvg } from 'components/common/IconSvg';
+import { useState } from 'react';
 
 export const Form = () => {
+  const [showPass, setShowPass] = useState(false);
+
+  const isShowPass = () => setShowPass(prev => !prev);
+
   const schema = yup.object().shape({
     Name: yup.string().min(3).max(30).required(),
     Email: yup.string().email().required(),
@@ -56,10 +62,13 @@ export const Form = () => {
               required: 'Password Address is required',
             })}
             aria-invalid={errors.Password ? 'true' : 'false'}
-            type="password"
+            type={showPass ? 'text' : 'password'}
             control={control}
             tooltipText="Please enter your password (min 3 max 16 characters)"
           />
+          <IconBox onClick={isShowPass}>
+            <IconSvg icon={showPass ? 'eye' : 'eye-slash'} />
+          </IconBox>
           {errors.Password && (
             <InfoInput role="alert">{errors.Password.message}</InfoInput>
           )}

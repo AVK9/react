@@ -23,11 +23,7 @@ export const Global = createGlobalStyle`
       --pink-activ: #F2C0BD;
       --peach: #F0AA8D;
       --peach-activ: #F4C8BA;
-      
       --green-grass: #38CD3E;
-
-      
-
       --text: #121417;
       --text-gray: #8a8a89;
       --font-family: 'Roboto', sans-serif;
@@ -53,10 +49,11 @@ export const Global = createGlobalStyle`
       margin: 0;
     }
     a {
-      color: currentColor;
+      color: inherit;
       text-decoration: none;
     }
-    ul {
+     ul,
+     ol {
       list-style: none;
       padding: 0;
       margin: 0;
@@ -67,25 +64,31 @@ export const Global = createGlobalStyle`
       height: auto;
     }
     button {
-      cursor: pointer;
-      border: none;
-      padding: 0;
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
     }
 
     @font-face {
       font-family: 'Roboto';
       font-weight: 700;
+      font-style: normal;
       src: url(${RobotoBold}) format('truetype');
     }
     @font-face {
       font-family: 'Roboto';
       font-weight: 500;
+      font-style: normal;
       src: url(${RobotoMedium}) format('truetype');
     }
 
     @font-face {
       font-family: 'Roboto';
       font-weight: 400;
+      font-style: normal;
       src: url(${RobotoRegular}) format('truetype');
     }
 

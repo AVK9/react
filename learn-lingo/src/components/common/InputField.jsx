@@ -3,7 +3,14 @@ import { Controller } from 'react-hook-form';
 
 import { InfoInput, Input, InputBox } from '../Form/Form.styled';
 
-export const InputField = ({ tooltipText, control, name }) => {
+export const InputField = ({
+  name,
+  control,
+  tooltipText,
+  type,
+  register,
+  errors,
+}) => {
   const regexPatterns = {
     Name: /[а-яА-Яa-zA-Z]{3,}/,
     Password: /^.{6,}$/,
@@ -13,7 +20,7 @@ export const InputField = ({ tooltipText, control, name }) => {
   const currentRegex = regexPatterns[name] || /.*/;
 
   const [isFocused, setIsFocused] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+
   const [fieldValid, setFieldValid] = useState(false);
 
   const handleFocus = () => {
@@ -33,6 +40,7 @@ export const InputField = ({ tooltipText, control, name }) => {
           <Input
             {...field}
             placeholder={name}
+            type={type}
             onFocus={handleFocus}
             onBlur={e => {
               field.onBlur(e);
