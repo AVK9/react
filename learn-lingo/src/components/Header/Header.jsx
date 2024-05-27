@@ -1,3 +1,4 @@
+import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import {
   Name,
@@ -14,7 +15,23 @@ import { HOME_ROUTE, TEACHERS_ROUTE } from 'utils/const';
 import { Button } from 'components/common/Button';
 import { IconSvg } from 'components/common/IconSvg';
 import { theme } from 'assets/styles';
+import { Modal } from 'components/Modal/Modal';
+import { useState } from 'react';
+import { ModalContent } from 'components/Modal/ModalContent';
 export const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isReg, setIsReg] = useState(false);
+
+  const openModalReg = () => {
+    setIsOpen(true);
+    setIsReg(true);
+  };
+  const openModalLog = () => {
+    setIsOpen(true);
+    setIsReg(false);
+  };
+  const closeModal = () => setIsOpen(false);
+
   return (
     <HeaderContainer>
       <Link to={'/'}>
@@ -31,18 +48,34 @@ export const Header = () => {
         </Navigation>
       </div>
       <RegisterBox>
-        <Login>
+        <Login onClick={openModalLog}>
           <IconSvg icon="login" size="20px" />
           Log in
         </Login>
         <Button
+          type="button"
+          onClick={openModalReg}
           background="black"
           backgroundHover={theme.colors.primary}
           margin="0"
         >
           Registration
         </Button>
+        <Button
+          type="button"
+          background="black"
+          backgroundHover={theme.colors.primary}
+          margin="0"
+        >
+          Log Out
+        </Button>
       </RegisterBox>
+      {ReactDOM.createPortal(
+        <Modal isOpen={isOpen} onClose={closeModal}>
+          <ModalContent isReg={isReg} />
+        </Modal>,
+        document.getElementById('modal-root')
+      )}
     </HeaderContainer>
   );
 };

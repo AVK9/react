@@ -24,7 +24,7 @@ const StyledButton = styled.button`
   color: ${props => props.color || 'white'};
   background: ${props => props.background || theme.colors.primary};
 
-  background-color: ${({ theme }) => theme.animation.cubicBezier};
+  background: ${({ theme }) => theme.animation.cubicBezier};
   box-shadow: ${({ theme }) => theme.shadows.small};
 
   transition: background ${({ theme }) => theme.animation.cubicBezier},

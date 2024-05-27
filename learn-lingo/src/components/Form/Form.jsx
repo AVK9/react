@@ -8,7 +8,7 @@ import { InputField } from 'components/common/InputField';
 import { IconSvg } from 'components/common/IconSvg';
 import { useState } from 'react';
 
-export const Form = () => {
+export const Form = ({ isRegistration }) => {
   const [showPass, setShowPass] = useState(false);
 
   const isShowPass = () => setShowPass(prev => !prev);
@@ -27,22 +27,30 @@ export const Form = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = data => console.log(data);
+  const onSubmit = data => {
+    if (isRegistration) {
+      console.log('Register:', data);
+    } else {
+      console.log('Login:', data);
+    }
+  };
 
   return (
     <FormBox>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <InputBox>
-          <InputField
-            {...register('Name', { required: 'Name is required' })}
-            aria-invalid={errors.Name ? 'true' : 'false'}
-            control={control}
-            tooltipText="Please enter your name (minimum 3 characters)."
-          />
-          {errors.Name?.type === 'required' && (
-            <p role="alert">First name is required</p>
-          )}
-        </InputBox>
+        {isRegistration && (
+          <InputBox>
+            <InputField
+              {...register('Name', { required: 'Name is required' })}
+              aria-invalid={errors.Name ? 'true' : 'false'}
+              control={control}
+              tooltipText="Please enter your name (minimum 3 characters)."
+            />
+            {errors.Name?.type === 'required' && (
+              <p role="alert">First name is required</p>
+            )}
+          </InputBox>
+        )}
         <InputBox>
           <InputField
             {...register('Email', {
@@ -73,7 +81,7 @@ export const Form = () => {
             <InfoInput role="alert">{errors.Password.message}</InfoInput>
           )}
         </InputBox>
-        <Button>submit</Button>
+        <Button>{isRegistration ? 'Sign Up' : 'Log In'}</Button>
       </form>
     </FormBox>
   );
