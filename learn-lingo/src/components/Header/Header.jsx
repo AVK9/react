@@ -58,6 +58,9 @@ export const Header = () => {
           background="black"
           backgroundHover={theme.colors.primary}
           margin="0"
+          color="white"
+          width="166px"
+          height="48px"
         >
           Registration
         </Button>
@@ -66,6 +69,9 @@ export const Header = () => {
           background="black"
           backgroundHover={theme.colors.primary}
           margin="0"
+          color="white"
+          width="166px"
+          height="48px"
         >
           Log Out
         </Button>

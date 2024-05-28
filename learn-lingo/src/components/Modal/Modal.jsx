@@ -1,4 +1,4 @@
-import { ModalW, Backdrop, CloseBtn } from './Modal.styled';
+import { Popup, Backdrop, CloseBtn } from './Modal.styled';
 import { useEffect, useState } from 'react';
 import { IconSvg } from 'components/common/IconSvg';
 
@@ -43,13 +43,13 @@ export const Modal = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
 
   return (
-    <Backdrop onClick={handleBackdropClick}>
-      <ModalW>
-        <CloseBtn onClick={onClose}>
+    <Backdrop open={open} onClick={handleBackdropClick}>
+      <Popup open={open}>
+        <CloseBtn onClick={handleClose}>
           <IconSvg size="32px" icon="close" />
         </CloseBtn>
-        <div className="modal-content">{children}</div>
-      </ModalW>
+        <div>{children}</div>
+      </Popup>
     </Backdrop>
   );
 };

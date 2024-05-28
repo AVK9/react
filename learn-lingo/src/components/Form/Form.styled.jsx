@@ -1,8 +1,5 @@
 import styled from '@emotion/styled';
 
-export const FormBox = styled.div`
-  width: 300px;
-`;
 export const InputBox = styled.div`
   position: relative;
   width: 100%;

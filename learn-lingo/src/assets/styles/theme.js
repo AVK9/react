@@ -15,9 +15,10 @@ export const theme = Object.freeze({
     textGray: '#8a8a89',
   },
 
-  media: {
-    tablet: '(min-width: 768px)',
-    pc: '(min-width: 1440px)',
+  breakpoints: {
+    mobile: '320px',
+    tablet: '768px',
+    laptop: '1440px',
   },
   fontSizes: {
     small: '14px',

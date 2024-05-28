@@ -11,17 +11,15 @@ const StyledButton = styled.button`
 
   font-family: var(--font-family);
   font-weight: 700;
-  font-size: 16px;
-  line-height: 125%;
-  color: #fff;
+  font-size: 18px;
+  line-height: 156%;
 
   border-radius: 12px;
-  padding: 14px 39px;
-  width: 166px;
-  height: 48px;
+  width: ${props => props.width || '100%'};
+  height: ${props => props.height || '60px'};
 
   margin: ${({ margin }) => margin || '20px 0px 0px 0px'};
-  color: ${props => props.color || 'white'};
+  color: ${props => props.color || '#121417'};
   background: ${props => props.background || theme.colors.primary};
 
   background: ${({ theme }) => theme.animation.cubicBezier};
