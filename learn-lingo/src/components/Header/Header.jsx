@@ -16,8 +16,10 @@ import { Button } from 'components/common/Button';
 import { IconSvg } from 'components/common/IconSvg';
 import { theme } from 'assets/styles';
 import { Modal } from 'components/Modal/Modal';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { ModalContent } from 'components/Modal/ModalContent';
+import { Context } from 'index';
+import { useAuthState } from 'react-firebase-hooks/auth';
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isReg, setIsReg] = useState(false);
@@ -31,6 +33,9 @@ export const Header = () => {
     setIsReg(false);
   };
   const closeModal = () => setIsOpen(false);
+
+  const { auth } = useContext(Context);
+  const [user] = useAuthState(auth);
 
   return (
     <HeaderContainer>
@@ -48,33 +53,39 @@ export const Header = () => {
         </Navigation>
       </div>
       <RegisterBox>
-        <Login onClick={openModalLog}>
-          <IconSvg icon="login" size="20px" />
-          Log in
-        </Login>
-        <Button
-          type="button"
-          onClick={openModalReg}
-          background="black"
-          backgroundHover={theme.colors.primary}
-          margin="0"
-          color="white"
-          width="166px"
-          height="48px"
-        >
-          Registration
-        </Button>
-        <Button
-          type="button"
-          background="black"
-          backgroundHover={theme.colors.primary}
-          margin="0"
-          color="white"
-          width="166px"
-          height="48px"
-        >
-          Log Out
-        </Button>
+        {!user ? (
+          <>
+            <Login onClick={openModalLog}>
+              <IconSvg icon="login" size="20px" />
+              Log in
+            </Login>
+            <Button
+              type="button"
+              onClick={openModalReg}
+              background="black"
+              backgroundHover={theme.colors.primary}
+              margin="0"
+              color="white"
+              width="166px"
+              height="48px"
+            >
+              Registration
+            </Button>
+          </>
+        ) : (
+          <Button
+            type="button"
+            background="black"
+            backgroundHover={theme.colors.primary}
+            margin="0"
+            color="white"
+            width="166px"
+            height="48px"
+            onClick={() => auth.signOut()}
+          >
+            Log Out
+          </Button>
+        )}
       </RegisterBox>
       {ReactDOM.createPortal(
         <Modal isOpen={isOpen} onClose={closeModal}>

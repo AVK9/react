@@ -3,16 +3,15 @@
 // import UpdateRead from './components/UpdateRead';
 // import UpdateWrite from './components/UpdateWrite';
 // import { SignUp } from 'pages/SignUp';
-// import { useContext } from 'react';
-
+import { useContext } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Header } from 'components/Header/Header';
 import { AppRouter } from './components/common/AppRouter';
-// import { Context } from '../';
+import { Context } from 'index';
 
 export const App = () => {
-  // const { auth } = useContext(Context);
-  // const [user, loading, error] = useAuthState(auth);
+  const { auth } = useContext(Context);
+  const [user, loading, error] = useAuthState(auth);
 
   // if (loading) {
   //   return <Loader />;

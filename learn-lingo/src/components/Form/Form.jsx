@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+// import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
@@ -7,6 +8,8 @@ import { IconBox, InfoInput, InputBox } from './Form.styled';
 import { InputField } from 'components/common/InputField';
 import { IconSvg } from 'components/common/IconSvg';
 import { useState } from 'react';
+import { handleLogin, handleRegister } from 'services/authApi';
+import { LoginWithGoogle } from 'components/LoginWithGoogle';
 
 export const Form = ({ isRegistration }) => {
   const [showPass, setShowPass] = useState(false);
@@ -14,7 +17,7 @@ export const Form = ({ isRegistration }) => {
   const isShowPass = () => setShowPass(prev => !prev);
 
   const schema = yup.object().shape({
-    Name: yup.string().min(3).max(30).required(),
+    Name: yup.string().min(3).max(30),
     Email: yup.string().email().required(),
     Password: yup.string().min(5).max(16).required(),
   });
@@ -28,10 +31,14 @@ export const Form = ({ isRegistration }) => {
     resolver: yupResolver(schema),
   });
   const onSubmit = data => {
+    const { Email: email, Password: password, Name: name } = data;
     if (isRegistration) {
-      console.log('Register:', data);
+      console.log('Register:', email);
+      console.log('Register:', password);
+      handleRegister(email, password);
     } else {
       console.log('Login:', data);
+      handleLogin(email, password);
     }
   };
 
@@ -81,6 +88,7 @@ export const Form = ({ isRegistration }) => {
         )}
       </InputBox>
       <Button>{isRegistration ? 'Sign Up' : 'Log In'}</Button>
+      <LoginWithGoogle />
     </form>
   );
 };

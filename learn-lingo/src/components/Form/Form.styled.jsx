@@ -22,9 +22,9 @@ export const Input = styled.input`
   /* &:activ {
     border: '2px solid #036303';
   }
-
-  &:focus {
-    border: 1px solid var(--primary);
+*/
+  /* &:hover {
+    border: 1px solid rgba(14, 15, 15, 0.3);
   } */
 `;
 

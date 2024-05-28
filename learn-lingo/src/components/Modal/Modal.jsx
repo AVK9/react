@@ -1,8 +1,13 @@
 import { Popup, Backdrop, CloseBtn } from './Modal.styled';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { IconSvg } from 'components/common/IconSvg';
+import { Context } from 'index';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 export const Modal = ({ isOpen, onClose, children }) => {
+  const { auth } = useContext(Context);
+  const [user] = useAuthState(auth);
+
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {
@@ -38,6 +43,12 @@ export const Modal = ({ isOpen, onClose, children }) => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
+  }, [onClose]);
+
+  useEffect(() => {
+    if (user) {
+      onClose();
+    }
   }, [onClose]);
 
   if (!isOpen) return null;

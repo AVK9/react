@@ -35,17 +35,15 @@ const StyledButton = styled.button`
   align-self: ${props => props.align || 'stretch'};
 
   ${props =>
-    props.loadmore &&
+    props.google &&
     css`
       border: 1px solid rgba(71, 84, 103, 0.2);
-      padding: 16px 32px;
-      background-color: ${({ theme }) => theme.colors.inputs};
-      color: #101828;
+      background-color: inherit;
       transition: border ${({ theme }) => theme.animation.cubicBezier};
 
       &:hover {
-        border: 1px solid var(--button);
-        background: #f2f4f7;
+        border: 1px solid theme.colors.primaryActiv};
+        background: theme.colors.primaryActiv;
         outline: none;
       }
     `}
@@ -56,12 +54,6 @@ const StyledButton = styled.button`
     width: 145px;
     background-color: ${({ theme }) => theme.colors.inputs};
     color: #101828;
-
-    &:hover {
-      border: 1px solid var(--button);
-      background: #f2f4f7;
-      outline: none;
-    }
   }
 
   ${props =>
