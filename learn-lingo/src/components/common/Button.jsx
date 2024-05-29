@@ -42,8 +42,8 @@ const StyledButton = styled.button`
       transition: border ${({ theme }) => theme.animation.cubicBezier};
 
       &:hover {
-        border: 1px solid theme.colors.primaryActiv};
-        background: theme.colors.primaryActiv;
+        border: 1px solid ${({ theme }) => theme.colors.primaryActiv};
+        background: ${({ theme }) => theme.colors.primaryActiv};
         outline: none;
       }
     `}

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import firebase from 'firebase/compat/app';
 import GoogleIcon from '@mui/icons-material/Google';
 import { Context } from 'index';
-import { Button } from './common/Button';
+import { Button } from './Button';
 
 export const LoginWithGoogle = () => {
   const { auth } = useContext(Context);

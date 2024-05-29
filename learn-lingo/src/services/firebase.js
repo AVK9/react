@@ -25,3 +25,12 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 export const auth = firebaseApp.auth();
 export const firestore = firebaseApp.firestore();
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+} else {
+  firebase.app(); // if already initialized, use that one
+}
+
+const db = firebase.firestore();
+export default db;

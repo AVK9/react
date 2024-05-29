@@ -38,6 +38,7 @@ export const Global = createGlobalStyle`
       line-height: 1;
       scroll-behavior: smooth;
       transition: all 0.5s linear;
+      background-color: #EEEEEE;
     }
     h1,
     h2,

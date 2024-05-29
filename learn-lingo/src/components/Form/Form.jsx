@@ -9,7 +9,7 @@ import { InputField } from 'components/common/InputField';
 import { IconSvg } from 'components/common/IconSvg';
 import { useState } from 'react';
 import { handleLogin, handleRegister } from 'services/authApi';
-import { LoginWithGoogle } from 'components/LoginWithGoogle';
+import { LoginWithGoogle } from 'components/common/LoginWithGoogle';
 
 export const Form = ({ isRegistration }) => {
   const [showPass, setShowPass] = useState(false);

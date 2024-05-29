@@ -1,5 +1,9 @@
-import React from 'react';
+import { TeacherList } from 'components/TeacherList/TeacherList';
 
 export const TeachersPage = () => {
-  return <div>TeachersPage</div>;
+  return (
+    <div>
+      <TeacherList />
+    </div>
+  );
 };

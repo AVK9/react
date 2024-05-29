@@ -5,6 +5,7 @@ const initialState = {
   email: null,
   token: null,
   id: null,
+  teachers: [],
 };
 
 const userSlice = createSlice({
@@ -21,9 +22,12 @@ const userSlice = createSlice({
       state.token = null;
       state.id = null;
     },
+    setTeachers(state, { payload }) {
+      state.teachers = [...state.teachers, ...payload];
+    },
   },
 });
 
-export const { setUser, removeUser } = userSlice.actions;
+export const { setUser, removeUser, setTeachers } = userSlice.actions;
 
 export default userSlice.reducer;

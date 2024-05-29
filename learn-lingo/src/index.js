@@ -14,22 +14,22 @@ export const Context = createContext(null);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <Context.Provider
-            value={{
-              firebase,
-              auth,
-              firestore,
-            }}
-          >
-            <Global />
-            <App />
-          </Context.Provider>
-        </ThemeProvider>
-      </Provider>
-    </BrowserRouter>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <BrowserRouter>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <Context.Provider
+          value={{
+            firebase,
+            auth,
+            firestore,
+          }}
+        >
+          <Global />
+          <App />
+        </Context.Provider>
+      </ThemeProvider>
+    </Provider>
+  </BrowserRouter>
+  // </React.StrictMode>
 );
