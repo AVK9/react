@@ -41,9 +41,7 @@ export const TeacherList = () => {
   }, [dispatch, data]);
   return (
     <div>
-      <TeacherListBox>
-        <TeacherCard teachers={teachers} />
-      </TeacherListBox>
+      <TeacherListBox>{data && <TeacherCard teachers={data} />}</TeacherListBox>
       {loading ? (
         <p>Loading...</p>
       ) : (

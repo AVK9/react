@@ -1,28 +1,48 @@
-import React, { useContext } from 'react';
+import React, { Suspense, useContext } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import { privateRoutes, publicRoutes } from '../../utils/routes';
+import { publicRoutes, privateRoutes } from '../../utils/routes';
 import { useAuthState } from 'react-firebase-hooks/auth';
-
-import { FAVORITES_ROUTE, HOME_ROUTE } from 'utils/const';
+import { NOTFAUND_ROUTE } from 'utils/const';
 import { Context } from 'index';
+import { Layout } from 'Layout/Layout';
 
 export const AppRouter = () => {
   const { auth } = useContext(Context);
   const [user] = useAuthState(auth);
 
-  return user ? (
+  const renderRoute = route => (
+    <Route
+      key={route.path}
+      path={route.path}
+      element={
+        <Suspense fallback={<div>Loading...</div>}>
+          <route.Component />
+        </Suspense>
+      }
+    />
+  );
+
+  return (
     <Routes>
-      {privateRoutes.map(({ path, Component }) => (
-        <Route key={path} path={path} element={<Component />} />
-      ))}
-      <Route path="*" element={<Navigate to={FAVORITES_ROUTE} replace />} />
-    </Routes>
-  ) : (
-    <Routes>
-      {publicRoutes.map(({ path, Component }) => (
-        <Route key={path} path={path} element={<Component />} />
-      ))}
-      <Route path="*" element={<Navigate to={HOME_ROUTE} replace />} />
+      <Route element={<Layout />}>
+        {user ? (
+          <>
+            {privateRoutes.map(renderRoute)}
+            <Route
+              path="*"
+              element={<Navigate to={NOTFAUND_ROUTE} replace />}
+            />
+          </>
+        ) : (
+          <>
+            {publicRoutes.map(renderRoute)}
+            <Route
+              path="*"
+              element={<Navigate to={NOTFAUND_ROUTE} replace />}
+            />
+          </>
+        )}
+      </Route>
     </Routes>
   );
 };

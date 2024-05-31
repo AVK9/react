@@ -38,61 +38,63 @@ export const Header = () => {
   const [user] = useAuthState(auth);
 
   return (
-    <HeaderContainer>
-      <Link to={'/'}>
-        <BoxLogo>
-          <img width={28} height={28} src={logo} alt="Learn Lingo" />
-          <Name>LearnLingo</Name>
-        </BoxLogo>
-      </Link>
+    <Section>
+      <HeaderContainer>
+        <Link to={'/'}>
+          <BoxLogo>
+            <img width={28} height={28} src={logo} alt="Learn Lingo" />
+            <Name>LearnLingo</Name>
+          </BoxLogo>
+        </Link>
 
-      <div>
-        <Navigation>
-          <StyledLink to={HOME_ROUTE}>Home</StyledLink>
-          <StyledLink to={TEACHERS_ROUTE}>Teachers</StyledLink>
-        </Navigation>
-      </div>
-      <RegisterBox>
-        {!user ? (
-          <>
-            <Login onClick={openModalLog}>
-              <IconSvg icon="login" size="20px" />
-              Log in
-            </Login>
+        <div>
+          <Navigation>
+            <StyledLink to={HOME_ROUTE}>Home</StyledLink>
+            <StyledLink to={TEACHERS_ROUTE}>Teachers</StyledLink>
+          </Navigation>
+        </div>
+        <RegisterBox>
+          {!user ? (
+            <>
+              <Login onClick={openModalLog}>
+                <IconSvg icon="login" size="20px" />
+                Log in
+              </Login>
+              <Button
+                type="button"
+                onClick={openModalReg}
+                background="black"
+                backgroundhover={theme.colors.primary}
+                margin="0"
+                color="white"
+                width="166px"
+                height="48px"
+              >
+                Registration
+              </Button>
+            </>
+          ) : (
             <Button
               type="button"
-              onClick={openModalReg}
               background="black"
-              backgroundHover={theme.colors.primary}
+              backgroundhover={theme.colors.primary}
               margin="0"
               color="white"
               width="166px"
               height="48px"
+              onClick={() => auth.signOut()}
             >
-              Registration
+              Log Out
             </Button>
-          </>
-        ) : (
-          <Button
-            type="button"
-            background="black"
-            backgroundHover={theme.colors.primary}
-            margin="0"
-            color="white"
-            width="166px"
-            height="48px"
-            onClick={() => auth.signOut()}
-          >
-            Log Out
-          </Button>
+          )}
+        </RegisterBox>
+        {ReactDOM.createPortal(
+          <Modal isOpen={isOpen} onClose={closeModal}>
+            <ModalContent isReg={isReg} />
+          </Modal>,
+          document.getElementById('modal-root')
         )}
-      </RegisterBox>
-      {ReactDOM.createPortal(
-        <Modal isOpen={isOpen} onClose={closeModal}>
-          <ModalContent isReg={isReg} />
-        </Modal>,
-        document.getElementById('modal-root')
-      )}
-    </HeaderContainer>
+      </HeaderContainer>
+    </Section>
   );
 };

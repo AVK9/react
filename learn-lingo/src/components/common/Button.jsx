@@ -6,8 +6,9 @@ const StyledButton = styled.button`
   cursor: pointer;
   white-space: nowrap;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  align-self: ${props => props.align || 'stretch'};
 
   font-family: var(--font-family);
   font-weight: 700;
@@ -29,18 +30,14 @@ const StyledButton = styled.button`
     box-shadow ${({ theme }) => theme.animation.cubicBezier};
 
   &:hover {
-    background: ${props => props.backgroundHover || theme.colors.primaryActiv};
+    background: ${props => props.backgroundhover || theme.colors.primaryActiv};
   }
-
-  align-self: ${props => props.align || 'stretch'};
-
   ${props =>
     props.google &&
     css`
       border: 1px solid rgba(71, 84, 103, 0.2);
       background-color: inherit;
       transition: border ${({ theme }) => theme.animation.cubicBezier};
-
       &:hover {
         border: 1px solid ${({ theme }) => theme.colors.primaryActiv};
         background: ${({ theme }) => theme.colors.primaryActiv};
@@ -48,35 +45,28 @@ const StyledButton = styled.button`
       }
     `}
 
-  &.load {
-    border: 1px solid rgba(71, 84, 103, 0.2);
-    padding: 16px 32px;
-    width: 145px;
-    background-color: ${({ theme }) => theme.colors.inputs};
-    color: #101828;
-  }
-
   ${props =>
-    props.next &&
+    props.more &&
     css`
-      padding: 0;
-      margin: 0;
-      width: 24px;
-      height: 24px;
+      font-family: var(--font-family);
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 150%;
+      text-decoration: underline;
+      text-decoration-skip-ink: none;
+      color: #121417;
       background-color: transparent;
       box-shadow: none;
+      justify-content: left;
 
       &:hover {
-        background-color: transparent;
+        border: none;
+        background: none;
         outline: none;
-        box-shadow: none;
+        color: ${({ theme }) => theme.colors.primary};
       }
     `}
 `;
-
-// const LargeStyledButton = styled(StyledButton)`
-//   font-size: 32px;
-// `;
 
 export const Button = props => {
   return <StyledButton {...props} />;

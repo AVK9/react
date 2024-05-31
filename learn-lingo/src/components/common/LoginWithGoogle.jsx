@@ -15,7 +15,7 @@ export const LoginWithGoogle = () => {
 
   return (
     <>
-      <Button onClick={login} google>
+      <Button onClick={login} google="true">
         <GoogleIcon sx={{ fontSize: 30 }} style={{ paddingRight: 5 }} />
         <p>Sign In with Google</p>
       </Button>

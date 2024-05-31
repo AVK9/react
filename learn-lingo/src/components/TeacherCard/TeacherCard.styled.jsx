@@ -5,9 +5,18 @@ export const ItemBox = styled.li`
   border-radius: 24px;
   padding: 24px;
   width: 100%;
-  height: 328px;
+
   background: #fff;
   margin-bottom: 53px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  /* background-color: red; */
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    flex-direction: row;
+  }
 `;
 
 export const ImgBox = styled.div`
@@ -63,3 +72,20 @@ export const TextU = styled.span`
 export const Text = styled.span`
   color: var(--text);
 `;
+export const Levels = styled.div`
+  border: 1px solid rgba(18, 20, 23, 0.2);
+  border-radius: 35px;
+  padding: 8px 12px;
+  height: 32px;
+  width: auto;
+  height: auto;
+  white-space: nowrap;
+`;
+export const LevelsBox = styled.div`
+  margin-top: 32px;
+  display: flex;
+
+  flex-wrap: wrap;
+  gap: 8px;
+`;
+export const Box = styled.div``;

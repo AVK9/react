@@ -1,9 +1,12 @@
+import { Section } from 'components/common/Section/Section';
 import { TeacherList } from 'components/TeacherList/TeacherList';
 
-export const TeachersPage = () => {
+const TeachersPage = () => {
   return (
-    <div>
+    <Section>
       <TeacherList />
-    </div>
+    </Section>
   );
 };
+
+export default TeachersPage;
