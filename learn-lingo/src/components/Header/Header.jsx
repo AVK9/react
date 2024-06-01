@@ -8,6 +8,7 @@ import {
   StyledLink,
   Login,
   RegisterBox,
+  ButtonMenu,
 } from './Header.styled';
 import { Section } from 'components/common/Section/Section';
 import logo from '../../assets/img/logo.svg';
@@ -20,10 +21,13 @@ import { useContext, useState } from 'react';
 import { ModalContent } from 'components/Modal/ModalContent';
 import { Context } from 'index';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import HeaderMobile from './HeaderMobile';
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isReg, setIsReg] = useState(false);
+  const [showHeaderMobile, setShowHeaderMobile] = useState(false);
 
+  console.log('showHeaderMobile', showHeaderMobile);
   const openModalReg = () => {
     setIsOpen(true);
     setIsReg(true);
@@ -38,63 +42,73 @@ export const Header = () => {
   const [user] = useAuthState(auth);
 
   return (
-    <Section>
-      <HeaderContainer>
-        <Link to={'/'}>
-          <BoxLogo>
-            <img width={28} height={28} src={logo} alt="Learn Lingo" />
-            <Name>LearnLingo</Name>
-          </BoxLogo>
-        </Link>
+    <>
+      <Section>
+        <HeaderContainer>
+          <Link to={'/'}>
+            <BoxLogo>
+              <img width={28} height={28} src={logo} alt="Learn Lingo" />
+              <Name>LearnLingo</Name>
+            </BoxLogo>
+          </Link>
 
-        <div>
-          <Navigation>
-            <StyledLink to={HOME_ROUTE}>Home</StyledLink>
-            <StyledLink to={TEACHERS_ROUTE}>Teachers</StyledLink>
-          </Navigation>
-        </div>
-        <RegisterBox>
-          {!user ? (
-            <>
-              <Login onClick={openModalLog}>
-                <IconSvg icon="login" size="20px" />
-                Log in
-              </Login>
+          <div>
+            <ButtonMenu type="button" onClick={() => setShowHeaderMobile(true)}>
+              <IconSvg icon="menu" store="transparent" fill="black" />
+            </ButtonMenu>
+            <Navigation>
+              <StyledLink to={HOME_ROUTE}>Home</StyledLink>
+              <StyledLink to={TEACHERS_ROUTE}>Teachers</StyledLink>
+            </Navigation>
+          </div>
+
+          <RegisterBox>
+            {!user ? (
+              <>
+                <Login onClick={openModalLog}>
+                  <IconSvg icon="login" size="20px" />
+                  Log in
+                </Login>
+                <Button
+                  type="button"
+                  onClick={openModalReg}
+                  background="black"
+                  backgroundhover={theme.colors.primary}
+                  margin="0"
+                  color="white"
+                  width="166px"
+                  height="48px"
+                >
+                  Registration
+                </Button>
+              </>
+            ) : (
               <Button
                 type="button"
-                onClick={openModalReg}
                 background="black"
                 backgroundhover={theme.colors.primary}
                 margin="0"
                 color="white"
                 width="166px"
                 height="48px"
+                onClick={() => auth.signOut()}
               >
-                Registration
+                Log Out
               </Button>
-            </>
-          ) : (
-            <Button
-              type="button"
-              background="black"
-              backgroundhover={theme.colors.primary}
-              margin="0"
-              color="white"
-              width="166px"
-              height="48px"
-              onClick={() => auth.signOut()}
-            >
-              Log Out
-            </Button>
+            )}
+          </RegisterBox>
+          {ReactDOM.createPortal(
+            <Modal isOpen={isOpen} onClose={closeModal}>
+              <ModalContent isReg={isReg} />
+            </Modal>,
+            document.getElementById('modal-root')
           )}
-        </RegisterBox>
-        {ReactDOM.createPortal(
-          <Modal isOpen={isOpen} onClose={closeModal}>
-            <ModalContent isReg={isReg} />
-          </Modal>,
-          document.getElementById('modal-root')
-        )}
-      </HeaderContainer>
-    </Section>
+        </HeaderContainer>
+      </Section>
+      <HeaderMobile
+        showHeaderMobile={showHeaderMobile}
+        setShowHeaderMobile={setShowHeaderMobile}
+      />
+    </>
   );
 };

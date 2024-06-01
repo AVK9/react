@@ -5,7 +5,7 @@ const IconWrapper = styled.svg`
   width: ${props => props.size || '32px'};
   height: ${props => props.size || '32px'};
   /* stroke-width: 1.5px; */
-  stroke: ${props => props.stroke || '#F4C550'};
+  stroke: ${props => props.stroke || 'transparent'};
   fill: ${props => props.fill || 'transparent'};
 `;
 

@@ -69,7 +69,7 @@ export const TeacherCard = ({ teachers }) => {
                 </InfoBoxItem>
               </InfoBox>
               <button type="button">
-                <IconSvg icon="heart" />
+                <IconSvg icon="heart" stroke="#ffc531" />
               </button>
             </HeadBox>
             <Name>

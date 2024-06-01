@@ -3,14 +3,19 @@ import { NavLink } from 'react-router-dom';
 import { theme } from 'assets/styles';
 
 export const HeaderContainer = styled.div`
+  margin-top: 20px;
   height: 48px;
 
   padding: 10px 0px 10px 0px;
-  margin: 0 auto;
+  /* margin: 20px auto; */
 
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.menu}) {
+    justify-content: space-between;
+  }
 `;
 export const BoxLogo = styled.div`
   border-radius: 15px;
@@ -48,6 +53,17 @@ export const Navigation = styled.nav`
   justify-content: center;
   align-items: center;
   gap: 28px;
+
+  transition: color ${({ theme }) => theme.animation.cubicBezier},
+    box-shadow ${({ theme }) => theme.animation.cubicBezier};
+
+  &:hover {
+    color: ${props => props.color || theme.colors.primary};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.menu}) {
+    display: none;
+  }
 `;
 
 export const StyledLink = styled(NavLink)`
@@ -89,4 +105,46 @@ export const RegisterBox = styled.div`
   align-items: center;
   justify-content: center;
   gap: 16px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.menu}) {
+    display: none;
+  }
+`;
+export const ButtonMenu = styled.button`
+  @media (min-width: ${({ theme }) => theme.breakpoints.menuX}) {
+    display: none;
+  }
+`;
+export const HeaderMobileBox = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  z-index: 1000;
+  opacity: ${props => (props.showHeaderMobile ? 1 : 0)};
+  transition: opacity 0.5s ease-in-out;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.menu}) {
+    display: none;
+  }
+`;
+export const NavMob = styled.nav`
+  /* width: 138px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+
+  transition: color ${({ theme }) => theme.animation.cubicBezier},
+    box-shadow ${({ theme }) => theme.animation.cubicBezier};
+
+  &:hover {
+    color: ${props => props.color || theme.colors.primary};
+  }
 `;
