@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const StyledTitle = styled.h1`
   font-family: var(--font-family);
@@ -8,6 +8,15 @@ const StyledTitle = styled.h1`
   letter-spacing: -0.02em;
   /* color: var(--main); */
   color: ${props => props.color || '#121417'};
+  margin-top: ${props => props.mt || '0px'};
+  margin-bottom: ${props => props.mb || '0px'};
+
+  ${props =>
+    props.h2 &&
+    css`
+      font-size: 24px;
+      line-height: 133%;
+    `}
 `;
 
 export const Title = props => {

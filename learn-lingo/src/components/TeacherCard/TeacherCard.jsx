@@ -29,14 +29,25 @@ import {
 } from './TeacherCard.styled';
 import { Button } from 'components/common/Button';
 import { IconSvg } from 'components/common/IconSvg';
+import { createPortal } from 'react-dom';
+import { Modal } from 'components/Modal/Modal';
+import { ModalContentBookTrial } from 'components/Modal/ModalContentBookTrial';
 
 export const TeacherCard = ({ teachers }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const openModal = item => {
+    setIsOpen(true);
+    setItemBook(item);
+  };
+  const closeModal = () => setIsOpen(false);
+
   const [readMoreArr, setReadMoreArr] = useState([]);
 
   const showReadMore = index => {
     setReadMoreArr(prev => [...prev, index]);
   };
 
+  const [itemBook, setItemBook] = useState([]);
   return (
     <div>
       {teachers.map((item, index) => (
@@ -133,11 +144,21 @@ export const TeacherCard = ({ teachers }) => {
                 ))}
             </LevelsBox>
             {readMoreArr.includes(index) && (
-              <Button width="232px" margin="32px 0px 0px 0px">
+              <Button
+                width="232px"
+                margin="32px 0px 0px 0px"
+                onClick={() => openModal(item)}
+              >
                 Book trial lesson
               </Button>
             )}
           </Box>
+          {createPortal(
+            <Modal isOpen={isOpen} onClose={closeModal}>
+              <ModalContentBookTrial itemBook={itemBook} />
+            </Modal>,
+            document.getElementById('modal-root')
+          )}
         </ItemBox>
       ))}
     </div>

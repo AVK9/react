@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/img/logo.svg';
 import { Section } from 'components/common/Section/Section';
 import { HOME_ROUTE, TEACHERS_ROUTE } from 'utils/const';
+import { Button } from 'components/common/Button';
 
 const HeaderMobile = ({ showHeaderMobile, setShowHeaderMobile }) => {
   const handleClose = () => {
@@ -35,9 +36,9 @@ const HeaderMobile = ({ showHeaderMobile, setShowHeaderMobile }) => {
                 </BoxLogo>
               </Link>
 
-              <button type="button" onClick={handleClose}>
+              <Button type="button" onClick={handleClose} simple={true}>
                 <IconSvg icon="close" stroke="black" />
-              </button>
+              </Button>
             </HeaderContainer>
             <div>
               <NavMob>

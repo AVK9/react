@@ -111,8 +111,16 @@ export const RegisterBox = styled.div`
   }
 `;
 export const ButtonMenu = styled.button`
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+
   @media (min-width: ${({ theme }) => theme.breakpoints.menuX}) {
     display: none;
+  }
+  &:hover {
+    box-shadow: ${({ theme }) => theme.shadows.small};
+    outline: none;
   }
 `;
 export const HeaderMobileBox = styled.div`

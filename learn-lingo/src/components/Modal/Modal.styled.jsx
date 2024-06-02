@@ -63,3 +63,23 @@ export const P = styled.p`
   margin-top: 20px;
   margin-bottom: 40px;
 `;
+
+export const TeacherPhoto = styled.img`
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+`;
+export const YourTeacher = styled.p`
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 133%;
+  color: #8a8a89;
+`;
+export const NameTeacher = styled.p`
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #121417;
+`;

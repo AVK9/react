@@ -44,6 +44,23 @@ const StyledButton = styled.button`
         outline: none;
       }
     `}
+  ${props =>
+    props.simple &&
+    css`
+      border-radius: 50%;
+      width: ${props => props.width || '35px'};
+      height: ${props => props.height || '35px'};
+
+      margin: ${({ margin }) => margin || '0px'};
+      border: 1px solid rgba(71, 84, 103, 0.2);
+      background-color: inherit;
+      transition: border ${({ theme }) => theme.animation.cubicBezier};
+      &:hover {
+        border: 1px solid ${({ theme }) => theme.colors.primaryActiv};
+        background: ${({ theme }) => theme.colors.primaryActiv};
+        outline: none;
+      }
+    `}
 
   ${props =>
     props.more &&

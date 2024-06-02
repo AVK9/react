@@ -27,7 +27,6 @@ export const Header = () => {
   const [isReg, setIsReg] = useState(false);
   const [showHeaderMobile, setShowHeaderMobile] = useState(false);
 
-  console.log('showHeaderMobile', showHeaderMobile);
   const openModalReg = () => {
     setIsOpen(true);
     setIsReg(true);
@@ -54,7 +53,12 @@ export const Header = () => {
 
           <div>
             <ButtonMenu type="button" onClick={() => setShowHeaderMobile(true)}>
-              <IconSvg icon="menu" store="transparent" fill="black" />
+              <IconSvg
+                icon="menu"
+                store="transparent"
+                fill="black"
+                size="25px"
+              />
             </ButtonMenu>
             <Navigation>
               <StyledLink to={HOME_ROUTE}>Home</StyledLink>

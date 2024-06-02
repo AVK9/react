@@ -49,7 +49,7 @@ export const Modal = ({ isOpen, onClose, children }) => {
     if (user) {
       onClose();
     }
-  }, [onClose]);
+  }, [onClose, user]);
 
   if (!isOpen) return null;
 
