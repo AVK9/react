@@ -22,6 +22,8 @@ export const Popup = styled.div`
   padding: 20px;
   width: 80%;
   max-width: 566px;
+  max-height: 80%;
+  overflow-y: auto;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     padding: 64px;
@@ -29,6 +31,10 @@ export const Popup = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.laptop}) {
     background-color: ${({ theme }) => theme.colors.primary};
+  }
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
   }
 `;
 

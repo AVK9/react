@@ -1,21 +1,19 @@
 import { useForm } from 'react-hook-form';
-// import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import { Button } from '../common/Button';
-import { IconBox, InfoInput, InputBox } from './Form.styled';
+import { InfoInput, InputBox } from './Form.styled';
 import { InputField } from 'components/common/InputField';
-import { IconSvg } from 'components/common/IconSvg';
-import { useState } from 'react';
-import { handleLogin, handleRegister } from 'services/authApi';
-import { LoginWithGoogle } from 'components/common/LoginWithGoogle';
+import { InputRadio } from 'components/common/InputRadio';
+import { Flex } from 'components/common/Flex';
+import { Button } from 'components/common/Button';
 
-export const FormBookTrial = ({ isRegistration }) => {
+export const FormBookTrial = ({ closeModal }) => {
   const schema = yup.object().shape({
     name: yup.string().min(3).max(30),
     email: yup.string().email().required(),
     phone: yup.string().required(),
+    survey: yup.string().required(),
   });
 
   const {
@@ -25,16 +23,61 @@ export const FormBookTrial = ({ isRegistration }) => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      survey: 'Career and business',
+    },
   });
   const onSubmit = data => {
     console.log('data', data);
+
+    closeModal();
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <Flex direction="column" gap="17px" mb="20px">
+        <InputRadio
+          {...register('survey')}
+          control={control}
+          name="survey"
+          label="Career and business"
+          value="Career and business"
+        />
+        <InputRadio
+          {...register('survey')}
+          control={control}
+          name="survey"
+          label="Lesson for kids"
+          value="Lesson for kids"
+        />
+        <InputRadio
+          {...register('radio')}
+          control={control}
+          name="survey"
+          label="Living abroad"
+          value="Living abroad"
+        />
+        <InputRadio
+          {...register('radio')}
+          control={control}
+          name="survey"
+          label="Exams and coursework"
+          value="Exams and coursework"
+        />
+        <InputRadio
+          {...register('radio')}
+          control={control}
+          name="survey"
+          label="Culture, travel or hobby"
+          value="Culture, travel or hobby"
+        />
+      </Flex>
+
       <InputBox>
         <InputField
-          {...register('Full Name', { required: 'Name is required' })}
+          {...register('name', { required: 'Name is required' })}
+          name="name"
+          placeholder="Full Name"
           aria-invalid={errors.name ? 'true' : 'false'}
           control={control}
           tooltipText="Please enter your name (minimum 3 characters)."
@@ -46,24 +89,28 @@ export const FormBookTrial = ({ isRegistration }) => {
 
       <InputBox>
         <InputField
-          {...register('Email', {
+          {...register('email', {
             required: 'Email Address is required',
           })}
-          aria-invalid={errors.Email ? 'true' : 'false'}
+          placeholder="Email"
+          name="email"
+          aria-invalid={errors.email ? 'true' : 'false'}
           control={control}
           tooltipText="Please enter your valid email."
         />
-        {errors.Email && (
-          <InfoInput role="alert">{errors.Email.message}</InfoInput>
+        {errors.email && (
+          <InfoInput role="alert">{errors.email.message}</InfoInput>
         )}
       </InputBox>
       <InputBox>
         <InputField
-          {...register('Phone number', {
+          {...register('phone', {
             required: 'Phone number is required',
           })}
           aria-invalid={errors.phone ? 'true' : 'false'}
+          placeholder="Phone number"
           type="phone"
+          name="phone"
           control={control}
           tooltipText="Please enter your phone number"
         />
@@ -71,7 +118,8 @@ export const FormBookTrial = ({ isRegistration }) => {
           <InfoInput role="alert">{errors.phone.message}</InfoInput>
         )}
       </InputBox>
-      <Button>Book</Button>
+
+      <Button type="submit">Book</Button>
     </form>
   );
 };

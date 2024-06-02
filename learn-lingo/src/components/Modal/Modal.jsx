@@ -57,7 +57,7 @@ export const Modal = ({ isOpen, onClose, children }) => {
     <Backdrop open={open} onClick={handleBackdropClick}>
       <Popup open={open}>
         <CloseBtn onClick={handleClose}>
-          <IconSvg size="32px" icon="close" />
+          <IconSvg size="32px" icon="close" stroke="black" />
         </CloseBtn>
         <div>{children}</div>
       </Popup>

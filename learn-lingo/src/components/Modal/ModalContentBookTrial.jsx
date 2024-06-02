@@ -4,7 +4,7 @@ import { NameTeacher, P, TeacherPhoto, YourTeacher } from './Modal.styled';
 import { Flex } from 'components/common/Flex';
 import { FormBookTrial } from 'components/Form/FormBookTrial';
 
-export const ModalContentBookTrial = ({ itemBook }) => {
+export const ModalContentBookTrial = ({ itemBook, closeModal }) => {
   return (
     <>
       <Title>Book trial lesson</Title>
@@ -27,7 +27,7 @@ export const ModalContentBookTrial = ({ itemBook }) => {
       <Title h2={true} mt="40px" mb="20px">
         What is your main reason for learning English?
       </Title>
-      <FormBookTrial />
+      <FormBookTrial closeModal={closeModal} />
     </>
   );
 };

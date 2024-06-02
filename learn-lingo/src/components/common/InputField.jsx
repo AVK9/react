@@ -10,11 +10,14 @@ export const InputField = ({
   type,
   register,
   errors,
+  placeholder,
 }) => {
   const regexPatterns = {
-    Name: /[а-яА-Яa-zA-Z]{3,}/,
-    Password: /^.{6,}$/,
-    Email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    name: /[а-яА-Яa-zA-Z]{3,}/,
+    password: /^.{6,}$/,
+    email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    phone:
+      /^\+?(\d{1,4})?[\s.-]?(\(?\d{1,4}\)?)[\s.-]?(\d{1,4})[\s.-]?(\d{1,9})[\s.-]?(\d{1,9})$/,
   };
 
   const currentRegex = regexPatterns[name] || /.*/;
@@ -39,7 +42,7 @@ export const InputField = ({
         render={({ field }) => (
           <Input
             {...field}
-            placeholder={name}
+            placeholder={placeholder}
             type={type}
             onFocus={handleFocus}
             onBlur={e => {

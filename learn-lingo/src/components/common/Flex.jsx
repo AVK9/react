@@ -7,6 +7,8 @@ const StyledFlex = styled.div`
   justify-content: ${props => props.justify || 'stretch'};
   gap: ${props => props.gap || '0'};
   margin: ${({ margin }) => margin || '0'};
+  margin-top: ${props => props.mt || '0px'};
+  margin-bottom: ${props => props.mb || '0px'};
 `;
 export const Flex = props => {
   return <StyledFlex {...props} />;

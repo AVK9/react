@@ -155,7 +155,10 @@ export const TeacherCard = ({ teachers }) => {
           </Box>
           {createPortal(
             <Modal isOpen={isOpen} onClose={closeModal}>
-              <ModalContentBookTrial itemBook={itemBook} />
+              <ModalContentBookTrial
+                itemBook={itemBook}
+                closeModal={closeModal}
+              />
             </Modal>,
             document.getElementById('modal-root')
           )}
