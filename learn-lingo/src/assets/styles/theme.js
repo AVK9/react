@@ -19,8 +19,11 @@ export const theme = Object.freeze({
     mobile: '320px',
     mobileL: '425px',
     mobileLX: '426px',
-    menu: '600px',
-    menuX: '601px',
+
+    menuS: '600px',
+    menuM: '640px',
+    menuX: '641px',
+
     tablet: '768px',
 
     laptop: '1440px',

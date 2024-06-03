@@ -1,3 +1,8 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 
-export const FormBox = styled.div``;
+export const Box = styled.div`
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+`;

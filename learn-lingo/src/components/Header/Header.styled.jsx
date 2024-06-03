@@ -5,16 +5,17 @@ import { theme } from 'assets/styles';
 export const HeaderContainer = styled.div`
   margin-top: 20px;
   height: 48px;
-
   padding: 10px 0px 10px 0px;
-  /* margin: 20px auto; */
 
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobileLX}) {
+    padding: 10px 34px 10px 34px;
+  }
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.menu}) {
-    justify-content: space-between;
+  @media (min-width: ${({ theme }) => theme.breakpoints.menu}) {
+    padding: 10px 64px 10px 64px;
   }
 `;
 export const BoxLogo = styled.div`
@@ -61,7 +62,7 @@ export const Navigation = styled.nav`
     color: ${props => props.color || theme.colors.primary};
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.menu}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.menuM}) {
     display: none;
   }
 `;
@@ -106,7 +107,7 @@ export const RegisterBox = styled.div`
   justify-content: center;
   gap: 16px;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.menu}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.menuM}) {
     display: none;
   }
 `;
@@ -137,7 +138,7 @@ export const HeaderMobileBox = styled.div`
   opacity: ${props => (props.showHeaderMobile ? 1 : 0)};
   transition: opacity 0.5s ease-in-out;
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.menu}) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.menuM}) {
     display: none;
   }
 `;

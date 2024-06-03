@@ -9,6 +9,8 @@ const StyledFlex = styled.div`
   margin: ${({ margin }) => margin || '0'};
   margin-top: ${props => props.mt || '0px'};
   margin-bottom: ${props => props.mb || '0px'};
+  height: ${props => props.h || '100%'};
+  width: ${props => props.w || '100%'};
 `;
 export const Flex = props => {
   return <StyledFlex {...props} />;
