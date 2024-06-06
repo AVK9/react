@@ -48,6 +48,13 @@ export const TeacherCard = ({ teachers }) => {
   };
 
   const [itemBook, setItemBook] = useState([]);
+
+  let favorite = [];
+  const addToFavoretes = item => {
+    favorite.push(item);
+    console.log('favorite', favorite);
+  };
+
   return (
     <div>
       {teachers.map((item, index) => (
@@ -79,7 +86,7 @@ export const TeacherCard = ({ teachers }) => {
                   </InfoTextItem>
                 </InfoBoxItem>
               </InfoBox>
-              <button type="button">
+              <button type="button" onClick={() => addToFavoretes(item)}>
                 <IconSvg icon="heart" stroke="#ffc531" />
               </button>
             </HeadBox>
@@ -101,7 +108,7 @@ export const TeacherCard = ({ teachers }) => {
             {!readMoreArr.includes(index) && (
               <Button
                 more
-                margin="16px"
+                margin="16px 0px"
                 height="auto"
                 onClick={() => showReadMore(index)}
               >

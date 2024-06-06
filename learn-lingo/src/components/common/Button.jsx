@@ -63,18 +63,33 @@ const StyledButton = styled.button`
     `}
 
   ${props =>
+    props.login &&
+    css`
+      color: ${({ theme }) => theme.colors.text};
+      background-color: transparent;
+      box-shadow: none;
+      width: ${props => props.width || 'auto'};
+
+      &:hover {
+        border: none;
+        background: none;
+        outline: none;
+        color: ${({ theme }) => theme.colors.primary};
+      }
+    `}
+      ${props =>
     props.more &&
     css`
-      font-family: var(--font-family);
       font-weight: 500;
       font-size: 16px;
       line-height: 150%;
       text-decoration: underline;
       text-decoration-skip-ink: none;
-      color: #121417;
+      margin: ${({ margin }) => margin || '0px 0px 0px 0px'};
+      color: ${({ theme }) => theme.colors.text};
       background-color: transparent;
       box-shadow: none;
-      justify-content: left;
+      width: ${props => props.width || 'auto'};
 
       &:hover {
         border: none;

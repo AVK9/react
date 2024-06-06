@@ -1,11 +1,12 @@
-import { Section } from 'components/common/Section/Section';
+import Filter from 'components/Filter/Filter';
 import { TeacherList } from 'components/TeacherList/TeacherList';
 
 const TeachersPage = () => {
   return (
-    <Section>
+    <>
+      <Filter />
       <TeacherList />
-    </Section>
+    </>
   );
 };
 

@@ -10,16 +10,20 @@ import { IconSvg } from 'components/common/IconSvg';
 import { useState } from 'react';
 import { handleLogin, handleRegister } from 'services/authApi';
 import { LoginWithGoogle } from 'components/common/LoginWithGoogle';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import { TEACHERS_ROUTE } from 'utils/const';
 
 export const Form = ({ isRegistration }) => {
+  const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
 
   const isShowPass = () => setShowPass(prev => !prev);
 
   const schema = yup.object().shape({
-    Name: yup.string().min(3).max(30),
-    Email: yup.string().email().required(),
-    Password: yup.string().min(5).max(16).required(),
+    name: yup.string().min(3).max(30),
+    email: yup.string().email().required(),
+    password: yup.string().min(5).max(16).required(),
   });
 
   const {
@@ -31,14 +35,17 @@ export const Form = ({ isRegistration }) => {
     resolver: yupResolver(schema),
   });
   const onSubmit = data => {
-    const { Email: email, Password: password, Name: name } = data;
+    const { email, password, name } = data;
     if (isRegistration) {
-      console.log('Register:', email);
-      console.log('Register:', password);
-      handleRegister(email, password);
+      toast.success(`${name} congretilation you register success`);
+      navigate({ TEACHERS_ROUTE });
+      console.log('Register:', data);
+
+      handleRegister(email, password, name);
     } else {
       console.log('Login:', data);
       handleLogin(email, password);
+      navigate({ TEACHERS_ROUTE });
     }
   };
 
@@ -47,44 +54,47 @@ export const Form = ({ isRegistration }) => {
       {isRegistration && (
         <InputBox>
           <InputField
-            {...register('Name', { required: 'Name is required' })}
-            aria-invalid={errors.Name ? 'true' : 'false'}
+            {...register('name', { required: 'Name is required' })}
+            aria-invalid={errors.name ? 'true' : 'false'}
             control={control}
+            placeholder="Name"
             tooltipText="Please enter your name (minimum 3 characters)."
           />
-          {errors.Name?.type === 'required' && (
-            <p role="alert">First name is required</p>
+          {errors.name?.type === 'required' && (
+            <p role="alert">Name is required</p>
           )}
         </InputBox>
       )}
       <InputBox>
         <InputField
-          {...register('Email', {
+          {...register('email', {
             required: 'Email Address is required',
           })}
-          aria-invalid={errors.Email ? 'true' : 'false'}
+          aria-invalid={errors.email ? 'true' : 'false'}
           control={control}
+          placeholder="Email"
           tooltipText="Please enter your valid email."
         />
-        {errors.Email && (
-          <InfoInput role="alert">{errors.Email.message}</InfoInput>
+        {errors.email && (
+          <InfoInput role="alert">{errors.email.message}</InfoInput>
         )}
       </InputBox>
       <InputBox>
         <InputField
-          {...register('Password', {
-            required: 'Password Address is required',
+          {...register('password', {
+            required: 'Password is required',
           })}
           aria-invalid={errors.Password ? 'true' : 'false'}
           type={showPass ? 'text' : 'password'}
           control={control}
+          placeholder="Password"
           tooltipText="Please enter your password (min 3 max 16 characters)"
         />
         <IconBox onClick={isShowPass}>
           <IconSvg stroke="#121417" icon={showPass ? 'eye' : 'eye-slash'} />
         </IconBox>
-        {errors.Password && (
-          <InfoInput role="alert">{errors.Password.message}</InfoInput>
+        {errors.password && (
+          <InfoInput role="alert">{errors.password.message}</InfoInput>
         )}
       </InputBox>
       <Button>{isRegistration ? 'Sign Up' : 'Log In'}</Button>

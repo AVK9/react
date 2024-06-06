@@ -6,9 +6,11 @@ export const Backdrop = styled.div`
   background: rgba(0, 0, 0, 0.5);
   opacity: ${props => (props.open ? 1 : 0)};
   transition: opacity 0.5s ease-in-out;
+  z-index: 1000;
 `;
 
 export const Popup = styled.div`
+  z-index: 1001;
   position: absolute;
   left: 50%;
   top: 50%;

@@ -26,6 +26,7 @@ export const Global = createGlobalStyle`
       --green-grass: #38CD3E;
       --text: #121417;
       --text-gray: #8a8a89;
+      --background-color: #EEEEEE;
       --font-family: 'Roboto', sans-serif;
     }
     html,
@@ -38,7 +39,7 @@ export const Global = createGlobalStyle`
       line-height: 1;
       scroll-behavior: smooth;
       transition: all 0.5s linear;
-      background-color: #EEEEEE;
+      
     }
     h1,
     h2,

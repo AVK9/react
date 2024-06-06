@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
 import { theme } from 'assets/styles';
 
 export const HeaderContainer = styled.div`
-  margin-top: 20px;
   height: 48px;
-  padding: 10px 0px 10px 0px;
+  padding: 20px 0px 10px 0px;
+
+  box-shadow: ${({ theme }) => theme.shadows.small};
 
   display: flex;
   justify-content: space-between;
@@ -16,35 +16,6 @@ export const HeaderContainer = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.menu}) {
     padding: 10px 64px 10px 64px;
-  }
-`;
-export const BoxLogo = styled.div`
-  border-radius: 15px;
-  display: flex;
-  align-content: center;
-  align-items: center;
-  gap: 8px;
-  width: 133px;
-  transition: box-shadow ${({ theme }) => theme.animation.cubicBezier};
-
-  &:hover {
-    box-shadow: ${({ theme }) => theme.shadows.small};
-  }
-`;
-
-export const Name = styled.span`
-  width: 100px;
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 120%;
-  letter-spacing: -0.02em;
-  color: #121417;
-  transition: color ${({ theme }) => theme.animation.cubicBezier},
-    box-shadow ${({ theme }) => theme.animation.cubicBezier};
-
-  &:hover {
-    color: ${props => props.color || theme.colors.primary};
   }
 `;
 
@@ -64,20 +35,6 @@ export const Navigation = styled.nav`
 
   @media (max-width: ${({ theme }) => theme.breakpoints.menuM}) {
     display: none;
-  }
-`;
-
-export const StyledLink = styled(NavLink)`
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 125%;
-  color: #121417;
-  &:hover {
-    color: var(--primary);
-  }
-  &.active {
-    color: var(--primary);
   }
 `;
 
@@ -111,6 +68,15 @@ export const RegisterBox = styled.div`
     display: none;
   }
 `;
+export const RegisterBoxMob = styled.div`
+  text-align: center;
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-direction: column;
+`;
 export const ButtonMenu = styled.button`
   border-radius: 50%;
   width: 35px;
@@ -134,7 +100,7 @@ export const HeaderMobileBox = styled.div`
   /* display: flex;
   justify-content: center;
   align-items: center; */
-  z-index: 1000;
+  z-index: 10;
   opacity: ${props => (props.showHeaderMobile ? 1 : 0)};
   transition: opacity 0.5s ease-in-out;
 
@@ -142,8 +108,9 @@ export const HeaderMobileBox = styled.div`
     display: none;
   }
 `;
-export const NavMob = styled.nav`
-  /* width: 138px; */
+export const NavMob = styled.div`
+  /* width: 100%;
+  height: 300px; */
   display: flex;
   flex-direction: column;
   justify-content: center;

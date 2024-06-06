@@ -5,8 +5,10 @@ import {
 } from 'firebase/auth';
 import { app } from '../services/firebase';
 import { getDatabase, ref, set, push } from 'firebase/database';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-export const handleRegister = (email, password) => {
+export const handleRegister = (email, password, name) => {
   const auth = getAuth();
   console.log('auth', auth);
   createUserWithEmailAndPassword(auth, email, password)
@@ -16,27 +18,27 @@ export const handleRegister = (email, password) => {
       const db = getDatabase(app);
       const newDocRef = push(ref(db, 'users/'));
       set(newDocRef, {
-        name: user.uid,
-        email: email,
+        name,
+        email,
         favorites: '',
       })
         .then(() => {
-          alert('data saved successfully');
+          toast.success('data saved successfully');
         })
         .catch(error => {
-          alert('error: ', error.message);
+          toast.error('error: ', error.message);
         });
     })
-    .catch(() => alert('Invalid data'));
+    .catch(() => toast.error('Invalid data'));
 };
 
 export const handleLogin = (email, password) => {
   const auth = getAuth();
   signInWithEmailAndPassword(auth, email, password)
     .then(({ user }) => {
-      console.log(user);
+      // console.log(user);
     })
-    .catch(() => alert('Invalid user'));
+    .catch(error => toast.error('Invalid login or password'));
 };
 
 // const saveData = async () => {

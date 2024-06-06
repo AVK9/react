@@ -7,6 +7,8 @@ import { TeacherCard } from 'components/TeacherCard/TeacherCard';
 import { TeacherListBox } from './TeacherList.styled';
 import { Button } from 'components/common/Button';
 import { Flex } from 'components/common/Flex';
+import { Section } from 'components/common/Section/Section';
+import { theme } from 'assets/styles';
 
 export const TeacherList = () => {
   const [data, setData] = useState([]);
@@ -40,7 +42,7 @@ export const TeacherList = () => {
     dispatch(setTeachers(data));
   }, [dispatch, data]);
   return (
-    <div>
+    <Section className="teacher-list" bg={theme.colors.background}>
       <TeacherListBox>{data && <TeacherCard teachers={data} />}</TeacherListBox>
       {loading ? (
         <p>Loading...</p>
@@ -51,6 +53,6 @@ export const TeacherList = () => {
           </Button>
         </Flex>
       )}
-    </div>
+    </Section>
   );
 };

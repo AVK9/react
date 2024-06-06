@@ -13,6 +13,7 @@ export const theme = Object.freeze({
     greenGrass: '#38CD3E',
     text: '#121417',
     textGray: '#8a8a89',
+    background: '#F8F8F8',
   },
 
   breakpoints: {
