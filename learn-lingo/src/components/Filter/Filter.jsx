@@ -7,6 +7,8 @@ import { languages, level, price } from 'utils/const';
 import { FilterBox } from './Filter.styled';
 
 const Filter = () => {
+  const current = '$ ';
+
   return (
     <Section className="filter" bg={theme.colors.background}>
       {/* <Flex p="32px 0px 0px 0px" h="112px" gap="20px">
@@ -15,9 +17,9 @@ const Filter = () => {
         <SelectField data={price} />
       </Flex> */}
       <FilterBox>
-        <SelectFields data={languages} width="221px" />
+        <SelectFields data={languages} width="400px" />
         <SelectFields data={level} />
-        <SelectFields data={price} width="124px" />
+        <SelectFields data={price} width="290px" current={current} />
       </FilterBox>
     </Section>
   );

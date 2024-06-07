@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { IconSvg } from './IconSvg';
 
@@ -16,16 +16,18 @@ const SelectedItem = styled.div`
 
   border-radius: 14px;
   padding: 0px 18px 0px 18px;
-  width: auto;
+  /* width: auto; */
   height: 48px;
   background: #fff;
 
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 18px;
+  white-space: nowrap;
   line-height: 111%;
   color: #121417;
   cursor: pointer;
+  border: 1px solid ${({ theme }) => theme.colors.primary};
 
   &:focus {
     border-color: #007bff;
@@ -33,7 +35,7 @@ const SelectedItem = styled.div`
   }
 
   &:hover {
-    border-color: #007bff;
+    border: 1px solid ${({ theme }) => theme.colors.primaryActiv};
   }
 `;
 
@@ -90,34 +92,96 @@ const SelectedItemBox = styled.div`
   cursor: pointer;
 `;
 const IconSvgBox = styled.div`
+  margin-left: 14px;
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 14px;
+  right: 14px;
+
+  display: flex;
+  gap: 10px;
 `;
 
-const SelectFields = ({ data, width }) => {
+const SelectFields = ({ data, width, current }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(data[0].value);
+  const [isClear, setIsClear] = useState(false);
+  //-----------
+  const wrapperRef = useRef(null);
+
+  const handleClickOutside = event => {
+    if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+      setIsOpen(false);
+    }
+  };
+
+  const handleKeyDown = event => {
+    if (
+      event.key === 'Escape' ||
+      event.key === ' ' ||
+      event.key === 'Spacebar'
+    ) {
+      setIsOpen(false);
+    }
+  };
+  useEffect(() => {
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleKeyDown);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen]);
+
+  //-------------
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
   const handleSelect = data => {
     setSelected(data);
     setIsOpen(false);
+    setIsClear(true);
+  };
+
+  const clearField = () => {
+    setSelected(data[0].value);
+    setIsClear(false);
   };
 
   return (
-    <SelectWrapper width={width}>
+    <SelectWrapper width={width} ref={wrapperRef}>
       <Label htmlFor={data[0].label}>{data[0].label}</Label>
       <SelectedItemBox>
-        <SelectedItem onClick={toggleDropdown}>{selected}</SelectedItem>
-        <IconSvgBox onClick={toggleDropdown}>
-          <IconSvg icon="down" stroke="black" />
+        <SelectedItem onClick={toggleDropdown}>
+          {current}
+          {selected}
+        </SelectedItem>
+        <IconSvgBox>
+          {isClear && (
+            <IconSvg
+              icon="close"
+              stroke="black"
+              size="20px"
+              onClick={clearField}
+            />
+          )}
+
+          <IconSvg
+            onClick={toggleDropdown}
+            icon="down"
+            stroke="black"
+            size="20px"
+          />
         </IconSvgBox>
       </SelectedItemBox>
       {isOpen && (
         <OptionsList>
-          {data.map((item, index) => (
+          {data.slice(1).map((item, index) => (
             <OptionItem key={index} onClick={() => handleSelect(item.value)}>
               {item.value}
             </OptionItem>
