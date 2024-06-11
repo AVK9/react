@@ -1,13 +1,11 @@
 import { theme } from 'assets/styles';
-import { Flex } from 'components/common/Flex';
 import { Section } from 'components/common/Section/Section';
-import SelectField from 'components/common/SelectField';
 import SelectFields from 'components/common/SelectFields';
 import { languages, level, price } from 'utils/const';
 import { FilterBox } from './Filter.styled';
 
 const Filter = () => {
-  const current = '$ ';
+  const unit = '$ ';
 
   return (
     <Section className="filter" bg={theme.colors.background}>
@@ -19,7 +17,7 @@ const Filter = () => {
       <FilterBox>
         <SelectFields data={languages} width="400px" />
         <SelectFields data={level} />
-        <SelectFields data={price} width="290px" current={current} />
+        <SelectFields data={price} width="290px" unit={unit} />
       </FilterBox>
     </Section>
   );

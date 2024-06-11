@@ -1,11 +1,12 @@
 import { Section } from 'components/common/Section/Section';
-import { TeacherList } from 'components/TeacherList/TeacherList';
-import React from 'react';
+import FavoritesList from 'components/FavoritesList/FavoritesList';
+import Filter from 'components/Filter/Filter';
 
 const FavoritesPage = () => {
   return (
     <Section>
-      <TeacherList />
+      <Filter />
+      <FavoritesList />
     </Section>
   );
 };

@@ -9,6 +9,11 @@ const IconWrapper = styled.svg`
   /* stroke-width: 1.5px; */
   stroke: ${props => props.stroke || 'transparent'};
   fill: ${props => props.fill || 'transparent'};
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 export const IconSvg = props => {

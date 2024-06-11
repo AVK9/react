@@ -2,9 +2,22 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
+  sendEmailVerification,
+  reload,
 } from 'firebase/auth';
-import { app } from '../services/firebase';
-import { getDatabase, ref, set, push } from 'firebase/database';
+import { app, auth } from '../services/firebase';
+import {
+  getDatabase,
+  ref,
+  set,
+  push,
+  orderByChild,
+  equalTo,
+  query,
+  get,
+  update,
+} from 'firebase/database';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -13,14 +26,15 @@ export const handleRegister = (email, password, name) => {
   console.log('auth', auth);
   createUserWithEmailAndPassword(auth, email, password)
     .then(({ user }) => {
-      console.log(user);
+      updateProfile(auth.currentUser, { displayName: name });
+      sendEmailVerification(auth.currentUser).then(reload(user));
 
       const db = getDatabase(app);
       const newDocRef = push(ref(db, 'users/'));
       set(newDocRef, {
         name,
         email,
-        favorites: '',
+        favorites: [],
       })
         .then(() => {
           toast.success('data saved successfully');
@@ -40,19 +54,94 @@ export const handleLogin = (email, password) => {
     })
     .catch(error => toast.error('Invalid login or password'));
 };
+//------------------
+export function getUserData() {
+  const user = auth.currentUser;
+  if (user !== null) {
+    const userData = {
+      name: user.displayName,
+      email: user.email,
+      emailVerified: user.emailVerified,
+      uid: user.uid,
+    };
+    return userData;
+  }
+}
+/////////////////////////////////////////////////////////////////
+export const findAndUpdateRecord = async (searchKey, searchValue, newItem) => {
+  const db = getDatabase(app);
+  const dbRef = ref(db, 'users/');
 
-// const saveData = async () => {
-//   const db = getDatabase(app);
-//   const newDocRef = push(ref(db, 'users/'));
-//   set(newDocRef, {
-//     name: inputValue1,
-//     email: inputValue2,
-//     favorites: inputValue2,
-//   })
-//     .then(() => {
-//       alert('data saved successfully');
-//     })
-//     .catch(error => {
-//       alert('error: ', error.message);
-//     });
-// };
+  // Знаходження запису за певним критерієм
+  const recordQuery = query(
+    dbRef,
+    orderByChild(searchKey),
+    equalTo(searchValue)
+  );
+  const snapshot = await get(recordQuery);
+
+  if (snapshot.exists()) {
+    const updates = {};
+    snapshot.forEach(childSnapshot => {
+      // Отримання ключа запису
+      const key = childSnapshot.key;
+      const existingData = childSnapshot.val(); // Отримання існуючих даних
+      let favorites = existingData.favorites || []; // Ініціалізація масиву `favorites`
+
+      // Перевірка наявності об'єкта у масиві
+      const isItemExists = favorites.some(
+        fav => fav.name === newItem.name && fav.surname === newItem.surname
+      );
+
+      if (!isItemExists) {
+        favorites.push(newItem);
+      }
+
+      // Формування шляху до оновлення з збереженням існуючих даних
+      updates[`/users/${key}/favorites`] = favorites;
+    });
+
+    // Оновлення запису
+    await update(ref(db), updates);
+    console.log('Запис оновлено успішно');
+  } else {
+    console.log('Запис не знайдено');
+  }
+};
+////////////////////////////////
+/////////////////////////////////////////////////////////////////
+export const findAndDeleteRecord = async (searchKey, searchValue, delItem) => {
+  const db = getDatabase(app);
+  const dbRef = ref(db, 'users/');
+
+  // Знаходження запису за певним критерієм
+  const recordQuery = query(
+    dbRef,
+    orderByChild(searchKey),
+    equalTo(searchValue)
+  );
+  const snapshot = await get(recordQuery);
+
+  if (snapshot.exists()) {
+    const updates = {};
+    snapshot.forEach(childSnapshot => {
+      // Отримання ключа запису
+      const key = childSnapshot.key;
+      const existingData = childSnapshot.val(); // Отримання існуючих даних
+
+      console.log(existingData.favorites);
+
+      const updatedFavorites = existingData.favorites.filter(
+        item => item.name !== delItem.name && item.surname !== delItem.surname
+      );
+      updates[`/users/${key}/favorites`] = updatedFavorites;
+    });
+
+    // Оновлення запису
+    await update(ref(db), updates);
+    console.log('Запис видалений успішно');
+  } else {
+    console.log('Запис не знайдено');
+  }
+};
+////////////////////////////////

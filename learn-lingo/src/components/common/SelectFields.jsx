@@ -101,7 +101,7 @@ const IconSvgBox = styled.div`
   gap: 10px;
 `;
 
-const SelectFields = ({ data, width, current }) => {
+const SelectFields = ({ data, width, unit }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(data[0].value);
   const [isClear, setIsClear] = useState(false);
@@ -158,7 +158,7 @@ const SelectFields = ({ data, width, current }) => {
       <Label htmlFor={data[0].label}>{data[0].label}</Label>
       <SelectedItemBox>
         <SelectedItem onClick={toggleDropdown}>
-          {current}
+          {unit}
           {selected}
         </SelectedItem>
         <IconSvgBox>

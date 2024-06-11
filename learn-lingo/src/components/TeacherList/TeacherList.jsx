@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { nextData } from '../../services/dbApi';
+import React, { useState, useEffect, useContext } from 'react';
+import { favoritesData, firstData, nextData } from '../../services/dbApi';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTeachers } from 'store/slices/userSlice';
 import { selectStateTeachers } from 'store/usersSelector ';
@@ -9,44 +9,67 @@ import { Button } from 'components/common/Button';
 import { Flex } from 'components/common/Flex';
 import { Section } from 'components/common/Section/Section';
 import { theme } from 'assets/styles';
+import { Context } from 'index';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 export const TeacherList = () => {
+  const { auth } = useContext(Context);
+  const [user] = useAuthState(auth);
+
   const [data, setData] = useState([]);
+  const [dataFavorite, setDataFavorite] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [isLoadMore, setIsLoadMore] = useState(true);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const initialData = await nextData();
+      const initialData = await firstData();
       setData(initialData);
       setLoading(false);
       console.log('data', data);
     };
 
+    if (user) {
+      favoritesData('email', user.email)
+        .then(data => {
+          setDataFavorite(data);
+          localStorage.setItem('userFavorites', JSON.stringify(data));
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+
     fetchData();
   }, []);
 
-  const teachers = useSelector(selectStateTeachers);
+  console.log('dataFavorite', dataFavorite);
 
   const handleLoadMore = async () => {
     setLoading(true);
     const nextPageData = await nextData();
     setData(prevData => [...prevData, ...nextPageData]);
     setLoading(false);
-    console.log('data', data);
+
+    if (nextPageData.length < 4 && !nextPageData.length) {
+      setIsLoadMore(false);
+    }
+    console.log('nextPageData', nextPageData.length);
+    console.log('isLoadMore', isLoadMore);
   };
 
-  useEffect(() => {
-    dispatch(setTeachers(data));
-  }, [dispatch, data]);
+  // useEffect(() => {
+  //   dispatch(setTeachers(data));
+  // }, [dispatch, data]);
   return (
     <Section className="teacher-list" bg={theme.colors.background}>
-      <TeacherListBox>{data && <TeacherCard teachers={data} />}</TeacherListBox>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
+      <TeacherListBox>
+        {data && <TeacherCard teachers={data} dataFavorite={dataFavorite} />}
+      </TeacherListBox>
+      {isLoadMore && (
         <Flex justify="center">
           <Button onClick={handleLoadMore} width="183px" margin="11px">
             Load More

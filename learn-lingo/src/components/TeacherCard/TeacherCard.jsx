@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   ItemBox,
   ImgBox,
@@ -32,8 +32,16 @@ import { IconSvg } from 'components/common/IconSvg';
 import { createPortal } from 'react-dom';
 import { Modal } from 'components/Modal/Modal';
 import { ModalContentBookTrial } from 'components/Modal/ModalContentBookTrial';
+import { findAndDeleteRecord, findAndUpdateRecord } from 'services/authApi';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Context } from 'index';
+import { toast } from 'react-toastify';
+import { favoritesData } from 'services/dbApi';
 
-export const TeacherCard = ({ teachers }) => {
+export const TeacherCard = ({ teachers, dataFavorite }) => {
+  const { auth } = useContext(Context);
+  const [user] = useAuthState(auth);
+
   const [isOpen, setIsOpen] = useState(false);
   const openModal = item => {
     setIsOpen(true);
@@ -48,11 +56,48 @@ export const TeacherCard = ({ teachers }) => {
   };
 
   const [itemBook, setItemBook] = useState([]);
+  const [red, setRed] = useState(false);
 
-  let favorite = [];
   const addToFavoretes = item => {
-    favorite.push(item);
-    console.log('favorite', favorite);
+    if (user) {
+      findAndUpdateRecord('email', user.email, item);
+      favoritesData('email', user.email);
+      // isItemExists(item);
+      // if (isItemExists) {
+      //   setRed(true);
+      // }
+    } else {
+      toast.warn('This functionality is available only to authorized users');
+    }
+  };
+
+  const isItemExists = item => {
+    dataFavorite.some(
+      fav => fav.name === item.name && fav.surname === item.surname
+    );
+  };
+
+  const delFavorite = item => {
+    if (user) {
+      findAndDeleteRecord('email', user.email, item);
+      favoritesData('email', user.email);
+      // isItemExists(item);
+      // if (isItemExists) {
+      //   setRed(true);
+      // }
+    } else {
+      toast.warn('This functionality is available only to authorized users');
+    }
+  };
+  let isFavorite;
+
+  const stateFavorite = item => {
+    console.log('item', item);
+    console.log('dataFavorite', dataFavorite);
+    delFavorite(item);
+    // isFavorite = dataFavorite?.some(fav => fav.surname === item.surname);
+    // console.log('isFavoriteisFavorite', isFavorite);
+    // isFavorite ? delFavorite(item) : addToFavoretes(item);
   };
 
   return (
@@ -86,9 +131,23 @@ export const TeacherCard = ({ teachers }) => {
                   </InfoTextItem>
                 </InfoBoxItem>
               </InfoBox>
-              <button type="button" onClick={() => addToFavoretes(item)}>
-                <IconSvg icon="heart" stroke="#ffc531" />
-              </button>
+              <div onClick={() => stateFavorite(item)}>
+                {isFavorite ? (
+                  <button
+                    type="button"
+                    // onClick={() => addToFavoretes(item)}
+                  >
+                    <IconSvg icon="heart" stroke="#ff0000" fill="#ff0000" />
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    // onClick={() => addToFavoretes(item)}
+                  >
+                    <IconSvg icon="heart" stroke="#ffc531" />
+                  </button>
+                )}
+              </div>
             </HeadBox>
             <Name>
               {item.name} {item.surname}
