@@ -69,8 +69,9 @@ export const TeacherCard = ({ teacher }) => {
     const fetchData = async () => {
       if (user) {
         const data = await favoritesData('email', user.email);
-
-        setIsFavorite(data.some(i => i.surname === surname && i.name === name));
+        setIsFavorite(
+          data?.some(i => i.surname === surname && i.name === name)
+        );
       }
     };
     fetchData();
@@ -79,10 +80,7 @@ export const TeacherCard = ({ teacher }) => {
   const fetchData = async () => {
     if (user) {
       const data = await favoritesData('email', user.email);
-
-      setIsFavorite(
-        data.some(fav => fav.surname === surname && fav.name === name)
-      );
+      setIsFavorite(data?.some(i => i.surname === surname && i.name === name));
     }
   };
 
