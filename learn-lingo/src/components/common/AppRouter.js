@@ -5,6 +5,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { NOTFAUND_ROUTE } from 'utils/const';
 import { Context } from 'index';
 import { Layout } from 'Layout/Layout';
+import { LoaderPercent } from 'components/Loader/LoaderPercent';
 
 export const AppRouter = () => {
   const { auth } = useContext(Context);
@@ -15,7 +16,7 @@ export const AppRouter = () => {
       key={route.path}
       path={route.path}
       element={
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<LoaderPercent />}>
           <route.Component />
         </Suspense>
       }
