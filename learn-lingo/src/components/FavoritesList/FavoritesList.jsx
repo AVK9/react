@@ -1,11 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { favoritesData, nextData } from '../../services/dbApi';
-import { useDispatch } from 'react-redux';
-import { setTeachers } from 'store/slices/userSlice';
+import { favoritesData } from '../../services/dbApi';
 import { TeacherCard } from 'components/TeacherCard/TeacherCard';
 import { TeacherListBox } from './FavoritesList.styled';
-import { Button } from 'components/common/Button';
-import { Flex } from 'components/common/Flex';
 import { Section } from 'components/common/Section/Section';
 import { theme } from 'assets/styles';
 import { Context } from 'index';
@@ -16,34 +12,24 @@ const FavoritesList = () => {
   const [user] = useAuthState(auth);
 
   const [dataFav, setDataFav] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  // const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
       if (user) {
-        favoritesData('email', user.email)
-          .then(data => {
-            setDataFav(data);
-          })
-          .catch(error => {
-            console.error(error);
-          });
+        const data = await favoritesData('email', user.email);
+        setDataFav(data);
       }
-      setLoading(false);
-      console.log('FavoritesListData', dataFav);
     };
-
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [user]);
 
   return (
     <Section className="teacher-list" bg={theme.colors.background}>
       <TeacherListBox>
-        {dataFav && <TeacherCard teachers={dataFav} />}
+        {dataFav &&
+          dataFav.map((teacher, index) => (
+            <TeacherCard teacher={teacher} key={index} />
+          ))}
       </TeacherListBox>
     </Section>
   );
