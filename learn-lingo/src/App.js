@@ -15,9 +15,10 @@ export const App = () => {
   const { auth } = useContext(Context);
   const [user, loading, error] = useAuthState(auth);
 
-  // if (loading) {
-  //   return <Loader />;
-  // }
+  if (loading) {
+    // return <Loader />;
+    return <p>Loading....... wait</p>;
+  }
 
   return (
     <>

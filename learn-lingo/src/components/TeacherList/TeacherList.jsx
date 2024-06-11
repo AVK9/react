@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { favoritesData, firstData, nextData } from '../../services/dbApi';
-import { useDispatch, useSelector } from 'react-redux';
-import { setTeachers } from 'store/slices/userSlice';
-import { selectStateTeachers } from 'store/usersSelector ';
 import { TeacherCard } from 'components/TeacherCard/TeacherCard';
 import { TeacherListBox } from './TeacherList.styled';
 import { Button } from 'components/common/Button';
@@ -20,8 +17,6 @@ export const TeacherList = () => {
   const [dataFavorite, setDataFavorite] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isLoadMore, setIsLoadMore] = useState(true);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,13 +56,18 @@ export const TeacherList = () => {
     console.log('isLoadMore', isLoadMore);
   };
 
-  // useEffect(() => {
-  //   dispatch(setTeachers(data));
-  // }, [dispatch, data]);
   return (
     <Section className="teacher-list" bg={theme.colors.background}>
       <TeacherListBox>
-        {data && <TeacherCard teachers={data} dataFavorite={dataFavorite} />}
+        {/* {data && <TeacherCard teachers={data} dataFavorite={dataFavorite} />} */}
+        {data &&
+          data.map((teacher, index) => (
+            <TeacherCard
+              teacher={teacher}
+              dataFavorite={dataFavorite}
+              key={index}
+            />
+          ))}
       </TeacherListBox>
       {isLoadMore && (
         <Flex justify="center">

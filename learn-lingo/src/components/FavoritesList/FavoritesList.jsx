@@ -33,7 +33,7 @@ const FavoritesList = () => {
           });
       }
       setLoading(false);
-      console.log('data', dataFav);
+      console.log('FavoritesListData', dataFav);
     };
 
     fetchData();
