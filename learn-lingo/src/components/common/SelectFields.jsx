@@ -4,7 +4,7 @@ import { IconSvg } from './IconSvg';
 
 const SelectWrapper = styled.div`
   position: relative;
-  width: ${props => props.width || '100%'};
+  width: ${props => props.width || '90%'};
   display: flex;
   flex-direction: column;
   gap: 8px;

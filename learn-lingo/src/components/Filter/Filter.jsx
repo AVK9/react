@@ -15,9 +15,9 @@ const Filter = () => {
         <SelectField data={price} />
       </Flex> */}
       <FilterBox>
-        <SelectFields data={languages} width="400px" />
+        <SelectFields data={languages} />
         <SelectFields data={level} />
-        <SelectFields data={price} width="290px" unit={unit} />
+        <SelectFields data={price} unit={unit} />
       </FilterBox>
     </Section>
   );
