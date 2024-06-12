@@ -17,12 +17,14 @@ const Filter = () => {
 
   // };
 
-  const handleChange = e => {
+  const handleChange = async e => {
     const { name, value } = e.target;
     if (name === 'languages') {
       // setSelectedLanguage(value);
       console.log('Selected Language:', value);
-      filterRecordLanguages(name, value);
+
+      const filter = await filterRecordLanguages(name, value);
+      console.log('Selected filter:', filter);
     } else if (name === 'levels') {
       console.log('Selected Level:', value);
       // setSelectedLevel(value);

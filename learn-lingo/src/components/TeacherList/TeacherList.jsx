@@ -7,7 +7,12 @@ import { Flex } from 'components/common/Flex';
 import { Section } from 'components/common/Section/Section';
 import { theme } from 'assets/styles';
 
-export const TeacherList = () => {
+export const TeacherList = ({
+  filter,
+  selectedLanguage,
+  selectedLevel,
+  selectedPrice,
+}) => {
   const [data, setData] = useState([]);
   const [isLoadMore, setIsLoadMore] = useState(true);
 
@@ -26,22 +31,26 @@ export const TeacherList = () => {
       setIsLoadMore(false);
     }
   };
-
+  console.log('filterFIN', filter);
   return (
     <Section className="teacher-list" bg={theme.colors.background}>
       <TeacherListBox>
-        {data &&
-          data.map((teacher, index) => (
-            <TeacherCard teacher={teacher} key={index} />
-          ))}
+        {selectedPrice || selectedLanguage || selectedLevel
+          ? filter?.map((teacher, index) => (
+              <TeacherCard teacher={teacher} key={index} />
+            ))
+          : data?.map((teacher, index) => (
+              <TeacherCard teacher={teacher} key={index} />
+            ))}
+
+        {isLoadMore && (
+          <Flex justify="center">
+            <Button onClick={handleLoadMore} width="183px" margin="11px">
+              Load More
+            </Button>
+          </Flex>
+        )}
       </TeacherListBox>
-      {isLoadMore && (
-        <Flex justify="center">
-          <Button onClick={handleLoadMore} width="183px" margin="11px">
-            Load More
-          </Button>
-        </Flex>
-      )}
     </Section>
   );
 };

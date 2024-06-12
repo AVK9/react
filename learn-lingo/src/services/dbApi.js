@@ -112,7 +112,59 @@ export const filterRecordLanguages = async (field, searchValue) => {
   } else {
     console.log('No data available');
   }
-  console.log('filteredTeachers', filteredTeachers);
+  // console.log('filteredTeachers', filteredTeachers);
   return filteredTeachers;
 };
 ////////////////////////////////
+
+export const filterRecords = async filters => {
+  const db = getDatabase(app);
+  const dbRef = ref(db, 'lingo/teachers');
+
+  const data = await get(dbRef);
+  const filteredTeachers = [];
+
+  if (data.exists()) {
+    data.forEach(i => {
+      const teacher = i.val();
+      let matches = true;
+
+      for (const field in filters) {
+        const searchValue = filters[field];
+        const fieldValue = teacher[field];
+
+        if (fieldValue) {
+          if (
+            typeof fieldValue === 'string' &&
+            !fieldValue.includes(searchValue)
+          ) {
+            matches = false;
+          } else if (
+            Array.isArray(fieldValue) &&
+            !fieldValue.includes(searchValue)
+          ) {
+            matches = false;
+          } else if (
+            typeof fieldValue === 'number' &&
+            fieldValue !== parseFloat(searchValue)
+          ) {
+            matches = false;
+          }
+        } else {
+          matches = false;
+        }
+
+        if (!matches) break;
+      }
+
+      if (matches) {
+        filteredTeachers.push(teacher);
+      }
+    });
+  } else {
+    console.log('No data available');
+  }
+
+  console.log('filteredTeachers', filteredTeachers);
+  return filteredTeachers;
+};
