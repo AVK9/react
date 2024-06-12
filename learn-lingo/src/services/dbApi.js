@@ -77,3 +77,42 @@ export const favoritesData = async (searchKey, searchValue) => {
     alert('error');
   }
 };
+
+/////////////////////////////////////////////////////////////////
+export const filterRecordLanguages = async (field, searchValue) => {
+  const db = getDatabase(app);
+  const dbRef = ref(db, 'lingo/teachers');
+
+  const data = await get(dbRef);
+  const filteredTeachers = [];
+
+  if (data.exists()) {
+    data.forEach(i => {
+      const teacher = i.val();
+      if (teacher[field]) {
+        const fieldValue = teacher[field];
+        if (
+          typeof fieldValue === 'string' &&
+          fieldValue.includes(searchValue)
+        ) {
+          filteredTeachers.push(teacher);
+        } else if (
+          Array.isArray(fieldValue) &&
+          fieldValue.includes(searchValue)
+        ) {
+          filteredTeachers.push(teacher);
+        } else if (
+          typeof fieldValue === 'number' &&
+          fieldValue === parseFloat(searchValue)
+        ) {
+          filteredTeachers.push(teacher);
+        }
+      }
+    });
+  } else {
+    console.log('No data available');
+  }
+  console.log('filteredTeachers', filteredTeachers);
+  return filteredTeachers;
+};
+////////////////////////////////

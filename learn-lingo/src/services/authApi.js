@@ -72,7 +72,6 @@ export const findAndUpdateRecord = async (searchKey, searchValue, newItem) => {
   const db = getDatabase(app);
   const dbRef = ref(db, 'users/');
 
-  // Знаходження запису за певним критерієм
   const recordQuery = query(
     dbRef,
     orderByChild(searchKey),
@@ -83,12 +82,10 @@ export const findAndUpdateRecord = async (searchKey, searchValue, newItem) => {
   if (snapshot.exists()) {
     const updates = {};
     snapshot.forEach(childSnapshot => {
-      // Отримання ключа запису
       const key = childSnapshot.key;
-      const existingData = childSnapshot.val(); // Отримання існуючих даних
-      let favorites = existingData.favorites || []; // Ініціалізація масиву `favorites`
+      const existingData = childSnapshot.val();
+      let favorites = existingData.favorites || [];
 
-      // Перевірка наявності об'єкта у масиві
       const isItemExists = favorites.some(
         fav => fav.name === newItem.name && fav.surname === newItem.surname
       );
@@ -97,24 +94,21 @@ export const findAndUpdateRecord = async (searchKey, searchValue, newItem) => {
         favorites.push(newItem);
       }
 
-      // Формування шляху до оновлення з збереженням існуючих даних
       updates[`/users/${key}/favorites`] = favorites;
     });
 
-    // Оновлення запису
     await update(ref(db), updates);
-    console.log('Запис оновлено успішно');
+    // toast('favorites add');
   } else {
-    console.log('Запис не знайдено');
+    toast.warn('favorites not faund');
   }
 };
 ////////////////////////////////
-/////////////////////////////////////////////////////////////////
+
 export const findAndDeleteRecord = async (searchKey, searchValue, delItem) => {
   const db = getDatabase(app);
   const dbRef = ref(db, 'users/');
 
-  // Знаходження запису за певним критерієм
   const recordQuery = query(
     dbRef,
     orderByChild(searchKey),
@@ -125,9 +119,8 @@ export const findAndDeleteRecord = async (searchKey, searchValue, delItem) => {
   if (snapshot.exists()) {
     const updates = {};
     snapshot.forEach(childSnapshot => {
-      // Отримання ключа запису
       const key = childSnapshot.key;
-      const existingData = childSnapshot.val(); // Отримання існуючих даних
+      const existingData = childSnapshot.val();
 
       console.log(existingData.favorites);
 
@@ -137,11 +130,10 @@ export const findAndDeleteRecord = async (searchKey, searchValue, delItem) => {
       updates[`/users/${key}/favorites`] = updatedFavorites;
     });
 
-    // Оновлення запису
     await update(ref(db), updates);
-    console.log('Запис видалений успішно');
+    // toast('favorites delete');
   } else {
-    console.log('Запис не знайдено');
+    toast.warn('favorites not faund');
   }
 };
 ////////////////////////////////

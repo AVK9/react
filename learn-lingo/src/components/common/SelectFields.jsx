@@ -101,7 +101,7 @@ const IconSvgBox = styled.div`
   gap: 10px;
 `;
 
-const SelectFields = ({ data, width, unit }) => {
+const SelectFields = ({ data, width, unit, name, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(data[0].value);
   const [isClear, setIsClear] = useState(false);
@@ -142,22 +142,24 @@ const SelectFields = ({ data, width, unit }) => {
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
-  const handleSelect = data => {
-    setSelected(data);
+  const handleSelect = value => {
+    setSelected(value);
     setIsOpen(false);
     setIsClear(true);
+    onChange({ target: { name, value } });
   };
 
   const clearField = () => {
     setSelected(data[0].value);
     setIsClear(false);
+    onChange({ target: { name, value: data[0].value } });
   };
 
   return (
     <SelectWrapper width={width} ref={wrapperRef}>
       <Label htmlFor={data[0].label}>{data[0].label}</Label>
       <SelectedItemBox>
-        <SelectedItem onClick={toggleDropdown}>
+        <SelectedItem onClick={toggleDropdown} name={name}>
           {unit}
           {selected}
         </SelectedItem>
@@ -182,7 +184,11 @@ const SelectFields = ({ data, width, unit }) => {
       {isOpen && (
         <OptionsList>
           {data.slice(1).map((item, index) => (
-            <OptionItem key={index} onClick={() => handleSelect(item.value)}>
+            <OptionItem
+              value={item}
+              key={index}
+              onClick={() => handleSelect(item.value)}
+            >
               {item.value}
             </OptionItem>
           ))}
