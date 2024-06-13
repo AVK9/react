@@ -57,12 +57,19 @@ const TeachersPage = () => {
         <form>
           <FilterBox>
             <SelectFields
+              holder="Language"
               name="languages"
               data={languages}
               onChange={handleChange}
             />
-            <SelectFields name="levels" data={level} onChange={handleChange} />
             <SelectFields
+              holder="Level"
+              name="levels"
+              data={level}
+              onChange={handleChange}
+            />
+            <SelectFields
+              holder=" / h"
               name="price_per_hour"
               data={price}
               unit={unit}
@@ -71,7 +78,6 @@ const TeachersPage = () => {
           </FilterBox>
         </form>
       </Section>
-      <TeacherList filter={filteredTeachers} />
       <TeacherList
         filter={filteredTeachers}
         selectedPrice={selectedPrice}

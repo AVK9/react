@@ -101,10 +101,11 @@ const IconSvgBox = styled.div`
   gap: 10px;
 `;
 
-const SelectFields = ({ data, width, unit, name, onChange }) => {
+const SelectFields = ({ holder, data, width, unit, name, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(data[0].value);
   const [isClear, setIsClear] = useState(false);
+  const [showName, setShowName] = useState(true);
   //-----------
   const wrapperRef = useRef(null);
 
@@ -140,7 +141,10 @@ const SelectFields = ({ data, width, unit, name, onChange }) => {
 
   //-------------
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+    setShowName(false);
+  };
 
   const handleSelect = value => {
     setSelected(value);
@@ -153,6 +157,7 @@ const SelectFields = ({ data, width, unit, name, onChange }) => {
     setSelected(data[0].value);
     setIsClear(false);
     onChange({ target: { name, value: data[0].value } });
+    setShowName(!showName);
   };
 
   return (
@@ -161,6 +166,7 @@ const SelectFields = ({ data, width, unit, name, onChange }) => {
       <SelectedItemBox>
         <SelectedItem onClick={toggleDropdown} name={name}>
           {unit}
+          {showName && holder}
           {selected}
         </SelectedItem>
         <IconSvgBox>

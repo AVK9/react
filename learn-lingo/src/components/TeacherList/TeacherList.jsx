@@ -31,7 +31,12 @@ export const TeacherList = ({
       setIsLoadMore(false);
     }
   };
-  console.log('filterFIN', filter);
+  let asd = true;
+  if (selectedPrice || selectedLanguage || selectedLevel) {
+    console.log('filterFIN', filter);
+    asd = false;
+  }
+
   return (
     <Section className="teacher-list" bg={theme.colors.background}>
       <TeacherListBox>
@@ -42,8 +47,7 @@ export const TeacherList = ({
           : data?.map((teacher, index) => (
               <TeacherCard teacher={teacher} key={index} />
             ))}
-
-        {isLoadMore && (
+        {asd && isLoadMore && (
           <Flex justify="center">
             <Button onClick={handleLoadMore} width="183px" margin="11px">
               Load More
