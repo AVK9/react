@@ -131,16 +131,7 @@ export const TextSection = styled.div`
   margin-top: 32px;
 `;
 
-export const Levels = styled.div`
-  border: 1px solid rgba(18, 20, 23, 0.2);
-  border-radius: 35px;
-  padding: 8px 12px;
-  height: 32px;
-  width: auto;
-  height: auto;
-  white-space: nowrap;
-`;
-export const LevelsBox = styled.div`
+export const LevelsBox = styled.ul`
   margin-top: 32px;
   display: flex;
 

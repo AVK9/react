@@ -112,6 +112,7 @@ const SelectFields = ({ holder, data, width, unit, name, onChange }) => {
   const handleClickOutside = event => {
     if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
       setIsOpen(false);
+      setShowName(true);
     }
   };
 
@@ -122,6 +123,7 @@ const SelectFields = ({ holder, data, width, unit, name, onChange }) => {
       event.key === 'Spacebar'
     ) {
       setIsOpen(false);
+      setShowName(true);
     }
   };
   useEffect(() => {
@@ -157,7 +159,7 @@ const SelectFields = ({ holder, data, width, unit, name, onChange }) => {
     setSelected(data[0].value);
     setIsClear(false);
     onChange({ target: { name, value: data[0].value } });
-    setShowName(!showName);
+    setShowName(true);
   };
 
   return (

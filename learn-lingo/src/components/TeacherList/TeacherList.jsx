@@ -42,7 +42,11 @@ export const TeacherList = ({
       <TeacherListBox>
         {selectedPrice || selectedLanguage || selectedLevel
           ? filter?.map((teacher, index) => (
-              <TeacherCard teacher={teacher} key={index} />
+              <TeacherCard
+                selectedLevel={selectedLevel}
+                teacher={teacher}
+                key={index}
+              />
             ))
           : data?.map((teacher, index) => (
               <TeacherCard teacher={teacher} key={index} />

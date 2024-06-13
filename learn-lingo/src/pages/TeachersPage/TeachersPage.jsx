@@ -36,9 +36,6 @@ const TeachersPage = () => {
 
   const filteredTeachers = useMemo(() => {
     return allTeachers.filter(teacher => {
-      console.log('selectedLanguage', selectedLanguage);
-      console.log('selectedLevel', selectedLevel);
-      console.log('selectedPrice', selectedPrice);
       return (
         (selectedLanguage
           ? teacher.languages.includes(selectedLanguage)

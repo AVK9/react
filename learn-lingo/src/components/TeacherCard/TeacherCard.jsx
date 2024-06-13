@@ -8,7 +8,6 @@ import {
   TextMain,
   TextU,
   Text,
-  Levels,
   LevelsBox,
   Box,
   InfoBox,
@@ -37,8 +36,9 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Context } from 'index';
 import { toast } from 'react-toastify';
 import { favoritesData } from 'services/dbApi';
+import Level from 'components/Level/Level';
 
-export const TeacherCard = ({ teacher }) => {
+export const TeacherCard = ({ selectedLevel, teacher }) => {
   const {
     avatar_url,
     name,
@@ -101,7 +101,6 @@ export const TeacherCard = ({ teacher }) => {
       toast.warn('This functionality is available only to authorized users');
     }
   };
-
   return (
     <div>
       <ItemBox>
@@ -200,10 +199,9 @@ export const TeacherCard = ({ teacher }) => {
           )}
 
           <LevelsBox>
-            {levels.map((i, index) => (
-              <Levels key={index} levels="true">
-                {`#${i}`}
-              </Levels>
+            {levels.map((item, index) => (
+              // <Level key={index} item={item} selectedLevel={selectedLevel} />
+              <Level key={index} item={item} selectedLevel={selectedLevel} />
             ))}
           </LevelsBox>
           {readMore && (
