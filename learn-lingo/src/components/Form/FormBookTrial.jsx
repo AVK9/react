@@ -35,7 +35,7 @@ export const FormBookTrial = ({ closeModal }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Flex direction="column" gap="17px" mb="20px">
+      <Flex direction="column" gap="17px" m="40px 0px 40px 0px">
         <InputRadio
           {...register('survey')}
           control={control}
@@ -51,21 +51,21 @@ export const FormBookTrial = ({ closeModal }) => {
           value="Lesson for kids"
         />
         <InputRadio
-          {...register('radio')}
+          {...register('survey')}
           control={control}
           name="survey"
           label="Living abroad"
           value="Living abroad"
         />
         <InputRadio
-          {...register('radio')}
+          {...register('survey')}
           control={control}
           name="survey"
           label="Exams and coursework"
           value="Exams and coursework"
         />
         <InputRadio
-          {...register('radio')}
+          {...register('survey')}
           control={control}
           name="survey"
           label="Culture, travel or hobby"

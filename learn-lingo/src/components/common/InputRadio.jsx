@@ -39,6 +39,10 @@ const Input = styled.input`
 `;
 
 const IconBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   width: 24px;
   height: 24px;
   border-radius: 50%;
@@ -57,9 +61,6 @@ const IconDot = styled.div`
   height: 14px;
   border-radius: 50%;
 
-  position: absolute;
-  top: 3px;
-  left: 3px;
   background: ${props => (props.active ? '#F4C550' : 'transparent')};
 `;
 
