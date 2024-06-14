@@ -200,7 +200,6 @@ export const TeacherCard = ({ selectedLevel, teacher }) => {
 
           <LevelsBox>
             {levels.map((item, index) => (
-              // <Level key={index} item={item} selectedLevel={selectedLevel} />
               <Level key={index} item={item} selectedLevel={selectedLevel} />
             ))}
           </LevelsBox>
