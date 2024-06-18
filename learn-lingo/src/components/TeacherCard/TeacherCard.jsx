@@ -102,120 +102,118 @@ export const TeacherCard = ({ selectedLevel, teacher }) => {
     }
   };
   return (
-    <div>
-      <ItemBox>
-        <>
-          <ImgBox>
-            <Img src={avatar_url} alt={`avatar ${name}`} />
-            <Ico />
-          </ImgBox>
-        </>
-        <Box>
-          <HeadBox>
-            <TextMain>Languages</TextMain>
-            <InfoBox>
-              <InfoBoxItem>
-                <IconSvg icon="book" stroke="black" size="16px" />
-                <InfoTextItem>Lessons online</InfoTextItem>
-              </InfoBoxItem>
-              <InfoBoxItem>
-                <InfoTextItem>Lessons done: {lessons_done}</InfoTextItem>
-              </InfoBoxItem>
-              <InfoBoxItem>
-                <IconSvg icon="star" fill="#ffc531" size="16px" />
-                <InfoTextItem>Rating: {rating}</InfoTextItem>
-              </InfoBoxItem>
-              <InfoBoxItem>
-                <InfoTextItem>
-                  Price / 1 hour: <Price>{price_per_hour}$</Price>
-                </InfoTextItem>
-              </InfoBoxItem>
-            </InfoBox>
-            <div>
-              {isFavorite && (
-                <button type="button" onClick={() => delFavorite(teacher)}>
-                  <IconSvg icon="heart" stroke="#ff0000" fill="#ff0000" />
-                </button>
-              )}
-              {!isFavorite && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    addToFavoretes(teacher);
-                  }}
-                >
-                  <IconSvg icon="heart" stroke="#ffc531" />
-                </button>
-              )}
-            </div>
-          </HeadBox>
-          <Name>
-            {name} {surname}
-          </Name>
-          <TextSection>
-            <TextMain>
-              Speaks: <TextU>{languages.join(', ')}</TextU>
-            </TextMain>
-            <TextMain>
-              Lesson Info: <Text>{lesson_info}</Text>
-            </TextMain>
+    <ItemBox>
+      <>
+        <ImgBox>
+          <Img src={avatar_url} alt={`avatar ${name}`} />
+          <Ico />
+        </ImgBox>
+      </>
+      <Box>
+        <HeadBox>
+          <TextMain>Languages</TextMain>
+          <InfoBox>
+            <InfoBoxItem>
+              <IconSvg icon="book" stroke="black" size="16px" />
+              <InfoTextItem>Lessons online</InfoTextItem>
+            </InfoBoxItem>
+            <InfoBoxItem>
+              <InfoTextItem>Lessons done: {lessons_done}</InfoTextItem>
+            </InfoBoxItem>
+            <InfoBoxItem>
+              <IconSvg icon="star" fill="#ffc531" size="16px" />
+              <InfoTextItem>Rating: {rating}</InfoTextItem>
+            </InfoBoxItem>
+            <InfoBoxItem>
+              <InfoTextItem>
+                Price / 1 hour: <Price>{price_per_hour}$</Price>
+              </InfoTextItem>
+            </InfoBoxItem>
+          </InfoBox>
+          <div>
+            {isFavorite && (
+              <button type="button" onClick={() => delFavorite(teacher)}>
+                <IconSvg icon="heart" stroke="#ff0000" fill="#ff0000" />
+              </button>
+            )}
+            {!isFavorite && (
+              <button
+                type="button"
+                onClick={() => {
+                  addToFavoretes(teacher);
+                }}
+              >
+                <IconSvg icon="heart" stroke="#ffc531" />
+              </button>
+            )}
+          </div>
+        </HeadBox>
+        <Name>
+          {name} {surname}
+        </Name>
+        <TextSection>
+          <TextMain>
+            Speaks: <TextU>{languages.join(', ')}</TextU>
+          </TextMain>
+          <TextMain>
+            Lesson Info: <Text>{lesson_info}</Text>
+          </TextMain>
 
-            <TextMain>
-              Conditions: <Text>{conditions.join(' ')}</Text>
-            </TextMain>
-          </TextSection>
-          {!readMore && (
-            <Button
-              more="true"
-              margin="16px 0px"
-              height="auto"
-              onClick={() => setReadMore(true)}
-            >
-              Read more
-            </Button>
-          )}
-          {readMore && (
-            <ReadMoreBox>
-              <TextReadmore>{experience}</TextReadmore>
-              <ReviewsBox>
-                {reviews &&
-                  reviews.map((i, index) => (
-                    <ReviewsItem key={index} levels="true">
-                      <BoxReviewerInfo>
-                        <ImgReviews src={avatar_url} alt={`avatar ${name}`} />
-                        <BoxReviewer>
-                          <NameReviewer>{i.reviewer_name}</NameReviewer>
-                          <RatingReviewer>
-                            <IconSvg icon="star" fill="#ffc531" size="16px" />
-                            {i.reviewer_rating}
-                          </RatingReviewer>
-                        </BoxReviewer>
-                      </BoxReviewerInfo>
-                      <TextReadmore>{i.comment}</TextReadmore>
-                    </ReviewsItem>
-                  ))}
-              </ReviewsBox>
-            </ReadMoreBox>
-          )}
-
-          <LevelsBox>
-            {levels.map((item, index) => (
-              <Level key={index} item={item} selectedLevel={selectedLevel} />
-            ))}
-          </LevelsBox>
-          {readMore && (
-            <Button width="232px" margin="32px 0px 0px 0px" onClick={openModal}>
-              Book trial lesson
-            </Button>
-          )}
-        </Box>
-        {createPortal(
-          <Modal isOpen={isOpen} onClose={closeModal}>
-            <ModalContentBookTrial teacher={teacher} closeModal={closeModal} />
-          </Modal>,
-          document.getElementById('modal-root')
+          <TextMain>
+            Conditions: <Text>{conditions.join(' ')}</Text>
+          </TextMain>
+        </TextSection>
+        {!readMore && (
+          <Button
+            more="true"
+            margin="16px 0px"
+            height="auto"
+            onClick={() => setReadMore(true)}
+          >
+            Read more
+          </Button>
         )}
-      </ItemBox>
-    </div>
+        {readMore && (
+          <ReadMoreBox>
+            <TextReadmore>{experience}</TextReadmore>
+            <ReviewsBox>
+              {reviews &&
+                reviews.map((i, index) => (
+                  <ReviewsItem key={index} levels="true">
+                    <BoxReviewerInfo>
+                      <ImgReviews src={avatar_url} alt={`avatar ${name}`} />
+                      <BoxReviewer>
+                        <NameReviewer>{i.reviewer_name}</NameReviewer>
+                        <RatingReviewer>
+                          <IconSvg icon="star" fill="#ffc531" size="16px" />
+                          {i.reviewer_rating}
+                        </RatingReviewer>
+                      </BoxReviewer>
+                    </BoxReviewerInfo>
+                    <TextReadmore>{i.comment}</TextReadmore>
+                  </ReviewsItem>
+                ))}
+            </ReviewsBox>
+          </ReadMoreBox>
+        )}
+
+        <LevelsBox>
+          {levels.map((item, index) => (
+            <Level key={index} item={item} selectedLevel={selectedLevel} />
+          ))}
+        </LevelsBox>
+        {readMore && (
+          <Button width="232px" margin="32px 0px 0px 0px" onClick={openModal}>
+            Book trial lesson
+          </Button>
+        )}
+      </Box>
+      {createPortal(
+        <Modal isOpen={isOpen} onClose={closeModal}>
+          <ModalContentBookTrial teacher={teacher} closeModal={closeModal} />
+        </Modal>,
+        document.getElementById('modal-root')
+      )}
+    </ItemBox>
   );
 };

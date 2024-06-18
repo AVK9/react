@@ -7,7 +7,7 @@ import { FormBookTrial } from 'components/Form/FormBookTrial';
 export const ModalContentBookTrial = ({ teacher, closeModal }) => {
   return (
     <>
-      <Title>Book trial lesson</Title>
+      <Title mt="30px">Book trial lesson</Title>
       <P>
         Our experienced tutor will assess your current language level, discuss
         your learning goals, and tailor the lesson to your specific needs.

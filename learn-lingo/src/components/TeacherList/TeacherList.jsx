@@ -4,8 +4,6 @@ import { TeacherCard } from 'components/TeacherCard/TeacherCard';
 import { TeacherListBox } from './TeacherList.styled';
 import { Button } from 'components/common/Button';
 import { Flex } from 'components/common/Flex';
-import { Section } from 'components/common/Section/Section';
-import { theme } from 'assets/styles';
 
 export const TeacherList = ({
   filter,
@@ -38,7 +36,7 @@ export const TeacherList = ({
   }
 
   return (
-    <Section className="teacher-list" bg={theme.colors.background}>
+    <>
       <TeacherListBox>
         {selectedPrice || selectedLanguage || selectedLevel
           ? filter?.map((teacher, index) => (
@@ -59,6 +57,6 @@ export const TeacherList = ({
           </Flex>
         )}
       </TeacherListBox>
-    </Section>
+    </>
   );
 };

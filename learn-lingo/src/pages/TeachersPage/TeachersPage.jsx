@@ -6,6 +6,8 @@ import SelectFields from 'components/common/SelectFields';
 import { languages, level, price } from 'utils/const';
 import { filterRecords } from 'services/dbApi';
 import { useEffect, useMemo, useState } from 'react';
+import { Container } from 'components/common/Section/Container';
+import { Back } from 'components/common/Section/Back';
 
 const TeachersPage = () => {
   const unit = '$ ';
@@ -49,39 +51,43 @@ const TeachersPage = () => {
   }, [selectedLanguage, selectedLevel, selectedPrice, allTeachers]);
 
   return (
-    <>
-      <Section className="filter" bg={theme.colors.background}>
-        <form>
-          <FilterBox>
-            <SelectFields
-              holder="Language"
-              name="languages"
-              data={languages}
-              onChange={handleChange}
-            />
-            <SelectFields
-              holder="Level"
-              name="levels"
-              data={level}
-              onChange={handleChange}
-            />
-            <SelectFields
-              holder=" / h"
-              name="price_per_hour"
-              data={price}
-              unit={unit}
-              onChange={handleChange}
-            />
-          </FilterBox>
-        </form>
-      </Section>
-      <TeacherList
-        filter={filteredTeachers}
-        selectedPrice={selectedPrice}
-        selectedLevel={selectedLevel}
-        selectedLanguage={selectedLanguage}
-      />
-    </>
+    <Back bg={theme.colors.background}>
+      <Container>
+        <Section className="filter">
+          <form>
+            <FilterBox>
+              <SelectFields
+                holder="Language"
+                name="languages"
+                data={languages}
+                onChange={handleChange}
+              />
+              <SelectFields
+                holder="Level"
+                name="levels"
+                data={level}
+                onChange={handleChange}
+              />
+              <SelectFields
+                holder=" / h"
+                name="price_per_hour"
+                data={price}
+                unit={unit}
+                onChange={handleChange}
+              />
+            </FilterBox>
+          </form>
+        </Section>
+        <Section>
+          <TeacherList
+            filter={filteredTeachers}
+            selectedPrice={selectedPrice}
+            selectedLevel={selectedLevel}
+            selectedLanguage={selectedLanguage}
+          />
+        </Section>
+      </Container>
+    </Back>
   );
 };
 

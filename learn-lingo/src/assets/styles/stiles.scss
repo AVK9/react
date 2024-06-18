@@ -21,11 +21,36 @@ $maxWidth: 2560;
     line-height: 117%;
     letter-spacing: -0.02em;
     color: #121417;
-    white-space: nowrap;
+    // white-space: nowrap;
 
-    @include adaptiv-font(48, 24);
+    @include adaptiv-font(48, 20);
 
     @media (min-width: 1440px) {
         white-space: wrap;
     }
+}
+
+.textrubber-nowrap {
+    font-family: var(--font-family);
+    font-weight: 500;
+    line-height: 117%;
+    letter-spacing: -0.02em;
+    color: #121417;
+    white-space: nowrap;
+
+    @include adaptiv-font(48, 20);
+
+    @media (min-width: 1440px) {
+        white-space: wrap;
+    }
+}
+
+
+.menu {
+    transform: translateY(-150%);
+    transition: all .4s;
+}
+
+.menu.showHeaderMobile {
+    transform: translateY(0%);
 }

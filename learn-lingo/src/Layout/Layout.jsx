@@ -1,13 +1,15 @@
 import { Outlet } from 'react-router-dom';
 import { Header } from 'components/Header/Header';
 import { ToastContainer } from 'react-toastify';
-import { Container } from './Layout.styled';
+import { Container } from 'components/common/Section/Container';
 
 export const Layout = () => {
   return (
-    <Container>
+    <div className="wrapper">
       <header>
-        <Header />
+        <Container>
+          <Header />
+        </Container>
       </header>
       <main>
         <Outlet />
@@ -24,6 +26,6 @@ export const Layout = () => {
         pauseOnHover
         theme="light"
       />
-    </Container>
+    </div>
   );
 };

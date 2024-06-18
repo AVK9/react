@@ -32,7 +32,7 @@ export const Popup = styled.div`
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.laptop}) {
-    background-color: ${({ theme }) => theme.colors.primary};
+    /* background-color: ${({ theme }) => theme.colors.primary}; */
   }
   &::-webkit-scrollbar {
     width: 0;

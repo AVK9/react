@@ -34,13 +34,21 @@ export const Global = createGlobalStyle`
       font-weight: 400;
       font-style: normal;
       width: 100%;
-      height: 100vh;
       margin: 0;
       line-height: 1;
       scroll-behavior: smooth;
-      transition: all 0.5s linear;
       
     }
+    .wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+main {
+  flex-grow: 1;
+}
+
     h1,
     h2,
     h3,

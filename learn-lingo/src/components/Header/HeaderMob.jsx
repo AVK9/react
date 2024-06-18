@@ -18,42 +18,59 @@ import { useContext, useEffect, useState } from 'react';
 import { Modal } from 'components/Modal/Modal';
 import { Context } from 'index';
 
-const HeaderMobile = () => {
+const HeaderMob = ({ showHeaderMobile, setShowHeaderMobile }) => {
   const { auth } = useContext(Context);
   const [user] = useAuthState(auth);
 
   const [isOpen, setIsOpen] = useState(false);
   const [isReg, setIsReg] = useState(false);
 
-  // const handleClose = () => {
-  //   setShowHeaderMobile(false);
-  // };
+  const handleClose = () => setIsOpen(false);
 
-  if (!isOpen) return null;
+  // if (!showHeaderMobile) return null;
 
   const openModalReg = () => {
     setIsOpen(true);
     setIsReg(true);
+    setShowHeaderMobile(false);
   };
   const openModalLog = () => {
     setIsOpen(true);
     setIsReg(false);
+    setShowHeaderMobile(false);
   };
   const onClose = () => setIsOpen(false);
 
   return (
     <>
-      <HeaderMobileBox>
+      <HeaderMobileBox
+        className={showHeaderMobile ? 'menu showHeaderMobile' : 'menu'}
+      >
         <div>
           <NavMob>
-            <StyledLink to={HOME_ROUTE} onClick={onClose}>
+            <StyledLink
+              to={HOME_ROUTE}
+              onClick={() => {
+                setShowHeaderMobile(false);
+              }}
+            >
               Home
             </StyledLink>
-            <StyledLink to={TEACHERS_ROUTE} onClick={onClose}>
+            <StyledLink
+              to={TEACHERS_ROUTE}
+              onClick={() => {
+                setShowHeaderMobile(false);
+              }}
+            >
               Teachers
             </StyledLink>
             {user && (
-              <StyledLink to={FAVORITES_ROUTE} onClick={onClose}>
+              <StyledLink
+                to={FAVORITES_ROUTE}
+                onClick={() => {
+                  setShowHeaderMobile(false);
+                }}
+              >
                 Favorites
               </StyledLink>
             )}
@@ -77,4 +94,4 @@ const HeaderMobile = () => {
   );
 };
 
-export default HeaderMobile;
+export default HeaderMob;

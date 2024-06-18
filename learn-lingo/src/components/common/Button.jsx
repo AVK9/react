@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 const StyledButton = styled.button`
   border: none;
   cursor: pointer;
+  outline: none;
   white-space: nowrap;
   display: flex;
   justify-content: center;

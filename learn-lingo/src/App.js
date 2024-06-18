@@ -12,9 +12,5 @@ export const App = () => {
     return <LoaderPercent />;
   }
 
-  return (
-    <>
-      <AppRouter />
-    </>
-  );
+  return <AppRouter />;
 };

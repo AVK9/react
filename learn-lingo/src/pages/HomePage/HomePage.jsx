@@ -3,16 +3,22 @@ import { Box } from './HomePage.styled';
 import GetStarted from 'components/HomePage/GetStarted/GetStarted';
 import ImgBlock from 'components/HomePage/ImgBlock/ImgBlock';
 import Advantages from 'components/HomePage/Advantages/Advantages';
+import { Container } from 'components/common/Section/Container';
+import HeaderMob from 'components/Header/HeaderMob';
 
 const HomePage = () => {
   return (
-    <Section>
-      <Box>
-        <GetStarted />
-        <ImgBlock />
-      </Box>
-      <Advantages />
-    </Section>
+    <Container>
+      <Section className="get-started">
+        <Box>
+          <GetStarted />
+          <ImgBlock />
+        </Box>
+      </Section>
+      <Section className="advantages">
+        <Advantages />
+      </Section>
+    </Container>
   );
 };
 

@@ -9,10 +9,6 @@ export const BoxLogo = styled.div`
   gap: 8px;
   width: 133px;
   transition: box-shadow ${({ theme }) => theme.animation.cubicBezier};
-
-  &:hover {
-    box-shadow: ${({ theme }) => theme.shadows.small};
-  }
 `;
 
 export const Name = styled.span`

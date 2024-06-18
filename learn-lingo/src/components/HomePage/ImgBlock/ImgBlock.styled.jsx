@@ -5,6 +5,7 @@ export const MainPictureBox = styled.div`
   border-radius: 30px;
   width: 568px;
   height: auto;
+  overflow: hidden;
 
   background: #fbe9ba;
   display: flex;

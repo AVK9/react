@@ -18,12 +18,15 @@ export const theme = Object.freeze({
 
   breakpoints: {
     mobile: '320px',
+    mobileM: '370px',
     mobileL: '425px',
     mobileLX: '426px',
 
     menuS: '600px',
     menuM: '640px',
     menuX: '641px',
+    menuL: '740px',
+    menuXL: '741px',
 
     tablet: '768px',
 
