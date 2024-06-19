@@ -7,7 +7,7 @@ export const MainPictureBox = styled.div`
   height: auto;
   overflow: hidden;
 
-  background: #fbe9ba;
+  background: var(--primary-activ);
   display: flex;
   flex-direction: column;
   align-items: center;

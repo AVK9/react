@@ -22,7 +22,7 @@ const StyledButton = styled.button`
 
   margin: ${({ margin }) => margin || '20px 0px 0px 0px'};
   color: ${props => props.color || '#121417'};
-  background: ${props => props.background || theme.colors.primary};
+  background: ${props => props.background || 'var(--primary)'};
 
   background: ${({ theme }) => theme.animation.cubicBezier};
   box-shadow: ${({ theme }) => theme.shadows.small};
@@ -31,7 +31,7 @@ const StyledButton = styled.button`
     box-shadow ${({ theme }) => theme.animation.cubicBezier};
 
   &:hover {
-    background: ${props => props.backgroundhover || theme.colors.primaryActiv};
+    background: ${props => props.backgroundhover || 'var(--primary-activ)'};
   }
   ${props =>
     props.google &&
@@ -40,8 +40,8 @@ const StyledButton = styled.button`
       background-color: inherit;
       transition: border ${({ theme }) => theme.animation.cubicBezier};
       &:hover {
-        border: 1px solid ${({ theme }) => theme.colors.primaryActiv};
-        background: ${({ theme }) => theme.colors.primaryActiv};
+        border: 1px solid var(--primary-activ);
+        background: var(--primary-activ);
         outline: none;
       }
     `}
@@ -57,8 +57,8 @@ const StyledButton = styled.button`
       background-color: inherit;
       transition: border ${({ theme }) => theme.animation.cubicBezier};
       &:hover {
-        border: 1px solid ${({ theme }) => theme.colors.primaryActiv};
-        background: ${({ theme }) => theme.colors.primaryActiv};
+        border: 1px solid var(--primary-activ);
+        background: var(--primary-activ);
         outline: none;
       }
     `}
@@ -75,7 +75,7 @@ const StyledButton = styled.button`
         border: none;
         background: none;
         outline: none;
-        color: ${({ theme }) => theme.colors.primary};
+        color: var(--primary);
       }
     `}
       ${props =>
@@ -96,7 +96,7 @@ const StyledButton = styled.button`
         border: none;
         background: none;
         outline: none;
-        color: ${({ theme }) => theme.colors.primary};
+        color: var(--primary);
       }
     `}
 `;

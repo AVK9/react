@@ -19,6 +19,11 @@ import AuthControl from './AuthControl/AuthControl';
 import HeaderMob from './HeaderMob';
 import Burger from 'components/Burger';
 import { useTheme } from 'styled-components';
+import { Button } from 'components/common/Button';
+import { Flex } from 'components/common/Flex';
+import { useColor } from 'hooks/use-color';
+import { colorTheme } from 'utils/const';
+import SelectTheme from 'components/common/SelectTheme';
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -114,14 +119,21 @@ export const Header = () => {
     };
   }, [showHeaderMobile, isMenuL]);
 
+  const { isTheme, setIsTheme } = useColor();
+
+  const handleChange = e => {
+    const { value } = e.target;
+    setIsTheme(value.toLowerCase());
+  };
+
   return (
     <Box>
       <HeaderContainer>
         <Logo />
-
         <Navigation>
           <Nav />
         </Navigation>
+        <SelectTheme name="colors" data={colorTheme} onChange={handleChange} />
         <ButtonMenu
           type="button"
           onClick={() => {

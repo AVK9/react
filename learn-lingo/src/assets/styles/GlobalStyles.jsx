@@ -39,6 +39,57 @@ export const Global = createGlobalStyle`
       scroll-behavior: smooth;
       
     }
+    html[data-theme='yellow'] {
+      --primary: #F4C550;
+      --primary-activ: #FBE9BA;
+      --mac: #EEB055;
+      --mac-lite: #E7C885;
+      --mac-darck: #D08F38;
+      --text: #121417;
+      --text-gray: #8a8a89;
+      --background-color: #EEEEEE;
+}
+
+html[data-theme='green'] {
+      --primary: #9FBAAE;
+      --primary-activ: #CBDED3;
+      --mac: #285660;
+      --mac-lite: #C5D9CE;
+      --mac-darck: #1D4650;
+      --text: #121417;
+      --text-gray: #8a8a89;
+      --background-color: #EEEEEE;
+}
+html[data-theme='blue'] {
+      --primary: #9FB7CE;
+      --primary-activ: #BFD6EA;
+      --mac: #304A6D;
+      --mac-lite: #BBD2E6;
+      --mac-darck: #243E60;
+      --text: #121417;
+      --text-gray: #8a8a89;
+      --background-color: #EEEEEE;
+}
+html[data-theme='pink'] {
+      --primary: #E0A39A;
+      --primary-activ: #F2C0BD;
+      --mac: #B03F3D;
+      --mac-lite: #EEBCB8;
+      --mac-darck: #9F302E;
+      --text: #121417;
+      --text-gray: #8a8a89;
+      --background-color: #EEEEEE;
+}
+html[data-theme='peach'] {
+      --primary: #F0AA8D;
+      --primary-activ: #F4C8BA;
+      --mac: #E0754F;
+      --mac-lite: #F3C3B3;
+      --mac-darck: #D1633F;
+      --text: #121417;
+      --text-gray: #8a8a89;
+      --background-color: #EEEEEE;
+}
     .wrapper {
   min-height: 100vh;
   display: flex;

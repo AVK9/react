@@ -37,3 +37,11 @@ export const price = [
   { label: 'Price', value: '32' },
   { label: 'Price', value: '35' },
 ];
+
+export const colorTheme = [
+  { label: 'Theme', value: 'Yellow', color: '#F4C550' },
+  { label: 'Theme', value: 'Green', color: '#9FBAAE' },
+  { label: 'Theme', value: 'Blue', color: '#9FB7CE' },
+  { label: 'Theme', value: 'Pink', color: '#E0A39A' },
+  { label: 'Theme', value: 'Peach', color: '#F0AA8D' },
+];
