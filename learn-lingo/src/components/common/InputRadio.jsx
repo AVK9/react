@@ -51,9 +51,10 @@ const IconBox = styled.div`
   top: 50% -9px;
   left: 0;
 
-  background: ${props => (props.active ? '2px solid #F4C550' : 'transparent')};
+  background: ${props =>
+    props.active ? '2px solid var(--primary)' : 'transparent'};
   border: ${props =>
-    props.active ? '2px solid #F4C550' : '2px solid #636366'};
+    props.active ? '2px solid var(--primary)' : '2px solid #636366'};
 `;
 
 const IconDot = styled.div`
@@ -61,7 +62,7 @@ const IconDot = styled.div`
   height: 14px;
   border-radius: 50%;
 
-  background: ${props => (props.active ? '#F4C550' : 'transparent')};
+  background: ${props => (props.active ? 'var(--primary)' : 'transparent')};
 `;
 
 export const InputRadio = ({ control, name, label, value }) => {

@@ -1,7 +1,6 @@
 import { MySVG } from 'assets/img/Mac';
 import Head from '../../../assets/img/Head.svg';
-import Mac from '../../../assets/img/Mac.svg';
-import { Box, ImgHead, ImgMac, MainPictureBox } from './ImgBlock.styled';
+import { Box, ImgHead, MainPictureBox } from './ImgBlock.styled';
 
 const ImgBlock = () => {
   return (
@@ -9,7 +8,9 @@ const ImgBlock = () => {
       <Box>
         <ImgHead src={Head} alt="Head" width="339px" height="339px" />
         {/* <ImgMac src={Mac} alt="Mac" width="361" height="176" /> */}
-        <MySVG />
+        <div width="361" height="176">
+          <MySVG alt="Mac" />
+        </div>
       </Box>
     </MainPictureBox>
   );

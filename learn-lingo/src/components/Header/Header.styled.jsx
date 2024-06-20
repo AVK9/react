@@ -134,19 +134,7 @@ export const HeaderMobileBox = styled.div`
   padding-bottom: 30px;
   width: 100%;
   background: #ffffff;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
 
-  /* animation: ${({ showHeaderMobile }) =>
-    !showHeaderMobile ? slideDown : slideUp}
-    1s ease;
-  transition: 0.5s; */
-  /* box-shadow: ${({ theme }) => theme.shadows.small}; */
-  /* transform: translateY(-100%); */
-  /* transition: 0.5s;
-  transform: translateY
-    ${({ showHeaderMobile }) => (showHeaderMobile ? '-100%' : '0%')}; */
   @media (min-width: ${({ theme }) => theme.breakpoints.menuL}) {
     display: none;
   }

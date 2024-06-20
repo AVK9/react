@@ -4,7 +4,7 @@ export const Background = styled.div`
   width: 100vw;
   height: 100vh;
   position: relative;
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: var(--primary);
   background-size: cover;
   display: flex;
   justify-content: center;

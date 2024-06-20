@@ -20,22 +20,14 @@ const Filter = () => {
   const handleChange = async e => {
     const { name, value } = e.target;
     if (name === 'languages') {
-      // setSelectedLanguage(value);
-      console.log('Selected Language:', value);
-
       const filter = await filterRecordLanguages(name, value);
-      console.log('Selected filter:', filter);
     } else if (name === 'levels') {
-      console.log('Selected Level:', value);
-      // setSelectedLevel(value);
       filterRecordLanguages(name, value);
     } else if (name === 'price_per_hour') {
-      console.log('Selected Price:', value);
       filterRecordLanguages(name, value);
-      // setSelectedPrice(value);
     }
 
-    // handleSubmit();
+
   };
   return (
     <Section className="filter" bg={theme.colors.background}>

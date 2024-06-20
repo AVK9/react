@@ -1,5 +1,4 @@
-import { theme } from 'assets/styles';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const ItemBox = styled.li`
   border-radius: 24px;
@@ -11,9 +10,7 @@ export const ItemBox = styled.li`
 
   display: flex;
   flex-wrap: wrap;
-  /* flex-direction: column; */
   gap: 48px;
-  /* background-color: red; */
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     flex-direction: row;
@@ -22,7 +19,7 @@ export const ItemBox = styled.li`
 `;
 
 export const ImgBox = styled.div`
-  border: 3px solid ${({ theme }) => theme.colors.primaryActiv};
+  border: 3px solid var(--primary-activ);
   border-radius: 100px;
   width: 120px;
   height: 120px;

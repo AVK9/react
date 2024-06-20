@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const Span = styled.span`
   background-color: #121417;
@@ -16,7 +16,7 @@ const Div = styled.div`
   cursor: pointer;
 
   &:hover ${Span} {
-    background-color: ${({ theme }) => theme.colors.primaryActiv};
+    background-color: var(--primary-activ);
     transform: scale(1.5);
     transform: rotate(-180deg);
   }
@@ -42,7 +42,7 @@ const Div = styled.div`
 
   &:hover::before,
   &:hover::after {
-    background-color: ${({ theme }) => theme.colors.primary};
+    background-color: var(--primary);
     transform: scale(1.1);
   }
 `;

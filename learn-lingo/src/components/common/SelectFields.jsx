@@ -27,7 +27,7 @@ const SelectedItem = styled.div`
   line-height: 111%;
   color: #121417;
   cursor: pointer;
-  border: 1px solid ${({ theme }) => theme.colors.primary};
+  border: 1px solid var(--primary);
 
   &:focus {
     border-color: #007bff;
@@ -35,7 +35,7 @@ const SelectedItem = styled.div`
   }
 
   &:hover {
-    border: 1px solid ${({ theme }) => theme.colors.primaryActiv};
+    border: 1px solid var(--primary-activ);
   }
 `;
 
@@ -60,6 +60,9 @@ const OptionsList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  opacity: ${props => (props.isOpen ? 1 : 0)};
+  max-height: ${props => (props.isOpen ? 'auto' : '0px')};
+  transition: opacity 0.5s, max-height 0.3s ease-in-out;
 `;
 
 const OptionItem = styled.li`
@@ -69,10 +72,10 @@ const OptionItem = styled.li`
   font-size: 18px;
   line-height: 111%;
   color: rgba(18, 20, 23, 0.2);
-
+  transition: all 0.5s;
   cursor: pointer;
   &:hover {
-    /* background-color: #007bff; */
+    /* background-color: var(--primary-activ); */
     color: #121417;
   }
   &:last-child {
@@ -162,6 +165,13 @@ const SelectFields = ({ holder, data, width, unit, name, onChange }) => {
     setShowName(true);
   };
 
+  const truncateString = (str, num) => {
+    if (str.length <= num) {
+      return str;
+    }
+    return str.slice(0, num) + '...';
+  };
+
   return (
     <SelectWrapper width={width} ref={wrapperRef}>
       <Label htmlFor={data[0].label}>{data[0].label}</Label>
@@ -169,7 +179,8 @@ const SelectFields = ({ holder, data, width, unit, name, onChange }) => {
         <SelectedItem onClick={toggleDropdown} name={name}>
           {unit}
           {showName && holder}
-          {selected}
+          {truncateString(selected, 14)}
+          {/* {selected} */}
         </SelectedItem>
         <IconSvgBox>
           {isClear && (
@@ -189,19 +200,17 @@ const SelectFields = ({ holder, data, width, unit, name, onChange }) => {
           />
         </IconSvgBox>
       </SelectedItemBox>
-      {isOpen && (
-        <OptionsList>
-          {data.slice(1).map((item, index) => (
-            <OptionItem
-              value={item}
-              key={index}
-              onClick={() => handleSelect(item.value)}
-            >
-              {item.value}
-            </OptionItem>
-          ))}
-        </OptionsList>
-      )}
+      <OptionsList isOpen={isOpen}>
+        {data.slice(1).map((item, index) => (
+          <OptionItem
+            value={item}
+            key={index}
+            onClick={() => handleSelect(item.value)}
+          >
+            {item.value}
+          </OptionItem>
+        ))}
+      </OptionsList>
     </SelectWrapper>
   );
 };

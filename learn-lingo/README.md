@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+Create an application for a company offering to use the services of online
+language teachers. The application consists of 3 pages: • a "Home" page with a
+list of company benefits and a link to start working with the application and
+redirects to the "Teachers" page. Stylization should be implemented using the
+examples given in the layout with different variations of the palette, or with
+the help of a prototype (which will make the "project" more unique). • the
+"Teachers" page, which contains a list of teachers that the user can filter by
+the language of teaching, by the level of knowledge of the students with whom
+the teacher works and the price per hour of class. • private page "Favorites"
+with teachers who were added by the user to "favorites"
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Layout**
+https://www.figma.com/design/kUyusReNv4HFhqzON6rKBp/Learn-Lingo-(Copy)?node-id=13-1083&t=mOqIq2ZKUNxFVGZe-0
 
-## Available Scripts
+**Technical task **
+https://docs.google.com/document/d/1ZB_MFgnnJj7t7OXtv5hESSwY6xRgVoACZKzgZczWc3Y/edit?pli=1
 
-In the project directory, you can run:
+1.  With the help of firebase_DB, add the possibility of authorization to the
+    application (registration, login, obtaining data about the current user,
+    logout).
+2.  The form for registration/authorization and minimal validation of its fields
+    should be implemented using react-hook-form & yup. All fields are mandatory.
+    The modal window with the form should be closed by clicking on the button in
+    the form of a "cross", by clicking on the backdrop or pressing the Esc key.
+3.  In the Realtime Database (by firebase), create a collection of teachers with
+    the following fields: name, surname, languages, levels, rating, reviews,
+    price_per_hour, lessons_done, avatar_url, lesson_info, conditions,
+    experience You can use teachers.json to populate the collection
+    https://drive.google.com/file/d/121ufnYEerBdPopSSVw0W7iUJWT-4Zcfu/view?usp=sharing
 
-### `npm start`
+    4. According to the layout, implement a card with a description of the
+       teacher's characteristics.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+4.  4 cards should be rendered on the "Teachers" page, and the rest of them can
+    be loaded by clicking on the Load more button, after which a request to the
+    database should be executed to display a new batch of cards.
+5.  In case of clicking on the button in the form of a "heart": UNAUTHORIZED
+    USER - a modal window or push notification should appear stating that this
+    functionality is available only to authorized users An authorized user - the
+    card must be added to the list of favorites (using localStorage or by
+    working with the users - by firebase collection), and the color of the
+    "heart" button must be changed.
+6.  When the page is updated by an authorized user, the final result of the
+    user's actions must be recorded. That is, if you add a card with information
+    about the teacher to your favorites and refresh the page, the button still
+    remains in the "favorite" state with the appropriate color.
+7.  In case of repeated clicking on the button in the form of a "heart", the
+    card should be removed from the list of favorites, and the color of the
+    button should change to its original state.
+8.  If you click on the Read more button, the card should open with more
+    detailed information about the teacher and feedback from his students.
+9.  If you click on the Book trial lesson button, a modal window should open
+    with a form for booking a trial lesson. The form and minimal validation of
+    its fields should be implemented using react-hook-form & yup. All fields are
+    mandatory.
+10. The modal window should be closed by clicking on the button in the form of a
+    "cross", by clicking on the backdrop or pressing the Esc key.
+11. The private page "Favorites" is available to the authorized user, upon going
+    to which the user has the opportunity to view all the cards of teachers that
+    he has added to his "favorites". In terms of styling, the page should be
+    similar to the "Teachers" page.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+        Tasks with an asterisk*
 
-### `npm test`
+    Create routing using React Router. Add filtering: by language of
+    instruction; according to the level of knowledge of students with whom the
+    teacher works; at the price per hour of class.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Performance criteria ● The layout from 320x to 1440x is rubber (must also
+display correctly on mobile and tablet devices), semantic and valid. ● No errors
+in the browser console. ● The work is done on native JS using a bundler (Vite,
+Parcel, etc.) or on React. ● User authorization and working with the collection
+are implemented using firebase ● Interactivity works according to the
+specification. ● The code is formatted and uncommented. ● The repository should
+have a README.md with a description of the project: what this project is about,
+basic technologies, layout, TK. ● The project is deployed on github pages,
+netlify.com or other third-party hosting firebase documentation for working with
+REST https://firebase.google.com/docs/reference

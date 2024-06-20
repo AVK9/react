@@ -29,7 +29,6 @@ export const FormBookTrial = ({ closeModal }) => {
   });
   const onSubmit = data => {
     console.log('data', data);
-
     closeModal();
   };
 

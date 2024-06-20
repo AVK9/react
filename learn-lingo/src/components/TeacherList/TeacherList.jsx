@@ -31,7 +31,6 @@ export const TeacherList = ({
   };
   let asd = true;
   if (selectedPrice || selectedLanguage || selectedLevel) {
-    console.log('filterFIN', filter);
     asd = false;
   }
 

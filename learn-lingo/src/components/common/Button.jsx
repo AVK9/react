@@ -1,4 +1,3 @@
-import { theme } from 'assets/styles';
 import styled, { css } from 'styled-components';
 
 const StyledButton = styled.button`

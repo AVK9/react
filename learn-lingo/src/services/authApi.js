@@ -23,7 +23,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export const handleRegister = (email, password, name) => {
   const auth = getAuth();
-  console.log('auth', auth);
   createUserWithEmailAndPassword(auth, email, password)
     .then(({ user }) => {
       updateProfile(auth.currentUser, { displayName: name });
@@ -50,7 +49,6 @@ export const handleLogin = (email, password) => {
   const auth = getAuth();
   signInWithEmailAndPassword(auth, email, password)
     .then(({ user }) => {
-      // console.log(user);
     })
     .catch(error => toast.error('Invalid login or password'));
 };
@@ -121,8 +119,6 @@ export const findAndDeleteRecord = async (searchKey, searchValue, delItem) => {
     snapshot.forEach(childSnapshot => {
       const key = childSnapshot.key;
       const existingData = childSnapshot.val();
-
-      console.log(existingData.favorites);
 
       const updatedFavorites = existingData.favorites.filter(
         item => item.name !== delItem.name && item.surname !== delItem.surname

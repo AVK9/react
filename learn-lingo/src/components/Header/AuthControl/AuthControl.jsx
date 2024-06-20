@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from 'components/common/Button';
 import { IconSvg } from 'components/common/IconSvg';
-import { theme } from 'assets/styles';
 import { Context } from 'index';
 
 const AuthControl = ({ openModalLog, openModalReg, handleClose }) => {
@@ -28,7 +27,7 @@ const AuthControl = ({ openModalLog, openModalReg, handleClose }) => {
                 icon="login"
                 size="20px"
                 mr="8px"
-                stroke={theme.colors.primary}
+                stroke="var(--primary)"
               />
               Log in
             </Button>
@@ -38,7 +37,7 @@ const AuthControl = ({ openModalLog, openModalReg, handleClose }) => {
               type="button"
               onClick={openModalReg}
               background="black"
-              backgroundhover={theme.colors.primary}
+              backgroundhover="var(--primary)"
               margin="0"
               color="white"
               width="166px"
@@ -53,7 +52,7 @@ const AuthControl = ({ openModalLog, openModalReg, handleClose }) => {
           <Button
             type="button"
             background="black"
-            backgroundhover={theme.colors.primary}
+            backgroundhover="var(--primary)"
             margin="0"
             color="white"
             width="166px"

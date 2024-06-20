@@ -17,13 +17,11 @@ import Logo from './Logo/Logo';
 import Nav from './Nav/Nav';
 import AuthControl from './AuthControl/AuthControl';
 import HeaderMob from './HeaderMob';
-import Burger from 'components/Burger';
 import { useTheme } from 'styled-components';
-import { Button } from 'components/common/Button';
-import { Flex } from 'components/common/Flex';
 import { useColor } from 'hooks/use-color';
 import { colorTheme } from 'utils/const';
 import SelectTheme from 'components/common/SelectTheme';
+import Burger from 'components/common/Burger';
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);

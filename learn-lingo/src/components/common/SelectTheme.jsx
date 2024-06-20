@@ -1,24 +1,27 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const SelectWrapper = styled.div`
-  position: relative;
-  width: 300px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  /* position: relative; */
+`;
+
+const borderAnimation = keyframes`
+  0% { border-color: #F4C550; }
+  20% { border-color: #9FBAAE; }
+  40% { border-color: #9FB7CE; }
+  60% { border-color: #E0A39A; }
+  80% { border-color: #F0AA8D; }
+  100% { border-color: #F4C550; }
 `;
 
 const SelectedItem = styled.div`
   display: flex;
   align-items: center;
-
   border-radius: 50%;
-
   width: 28px;
   height: 28px;
   background: #fff;
-
+  transition: all 0.8s;
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 18px;
@@ -26,8 +29,10 @@ const SelectedItem = styled.div`
   line-height: 111%;
   color: #121417;
   cursor: pointer;
-  border: 1px solid var(--primary);
+  border: 4px solid var(--primary);
   background-color: var(--primary);
+
+  animation: ${borderAnimation} 5s linear infinite;
 
   &:hover {
     border: 1px solid var(--primary-activ);
@@ -37,10 +42,9 @@ const SelectedItem = styled.div`
 const OptionsList = styled.ul`
   padding: 18px;
   border-radius: 22px;
-  overflow-y: auto;
   z-index: 10;
   position: absolute;
-  top: 85px;
+  top: 50px;
 
   list-style: none;
   background-color: #fff;
@@ -55,6 +59,11 @@ const OptionsList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  box-shadow: ${({ theme }) => theme.shadows.small};
+
+  opacity: ${props => (props.isOpen ? 1 : 0)};
+  max-height: ${props => (props.isOpen ? 'auto' : '0px')};
+  transition: opacity 0.5s, max-height 0.3s ease-in-out;
 `;
 
 const OptionItem = styled.li`
@@ -68,10 +77,10 @@ const OptionItem = styled.li`
   font-size: 18px;
   line-height: 111%;
   color: rgba(18, 20, 23, 0.2);
+  transition: all 0.5s;
 
   cursor: pointer;
   &:hover {
-    /* background-color: #007bff; */
     color: #121417;
   }
   &:last-child {
@@ -89,12 +98,12 @@ const TooltipText = styled.div`
   padding: 5px 0;
   position: absolute;
   z-index: 1;
-  bottom: 0px; /* Положение сверху по умолчанию */
+  bottom: 0px;
   left: 95px;
-  margin-left: -60px; /* Отрицательный половинный ширины */
+  margin-left: -60px;
 
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: all 2s;
 
   &::after {
     content: '';
@@ -128,6 +137,7 @@ const Color = styled.div`
 
 const SelectTheme = ({ data, name, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [delayedData, setDelayedData] = useState([]);
   const [selected, setSelected] = useState(data[0].value);
   //-----------
   const wrapperRef = useRef(null);
@@ -151,9 +161,16 @@ const SelectTheme = ({ data, name, onChange }) => {
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
       document.addEventListener('keydown', handleKeyDown);
+
+      data.forEach((item, index) => {
+        setTimeout(() => {
+          setDelayedData(prevData => [...prevData, item]);
+        }, index * 75);
+      });
     } else {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleKeyDown);
+      setDelayedData([]);
     }
 
     return () => {
@@ -180,20 +197,18 @@ const SelectTheme = ({ data, name, onChange }) => {
         <SelectedItem onClick={toggleDropdown} name={name} />
         <TooltipText>Theme</TooltipText>
       </SelectedItemBox>
-      {isOpen && (
-        <OptionsList>
-          {data.map((item, index) => (
-            <OptionItem
-              value={item}
-              key={index}
-              onClick={() => handleSelect(item.value)}
-            >
-              <Color col={item.color} />
-              {item.value}
-            </OptionItem>
-          ))}
-        </OptionsList>
-      )}
+      <OptionsList isOpen={isOpen}>
+        {delayedData.map((item, index) => (
+          <OptionItem
+            value={item}
+            key={index}
+            onClick={() => handleSelect(item.value)}
+          >
+            <Color col={item.color} />
+            {item.value}
+          </OptionItem>
+        ))}
+      </OptionsList>
     </SelectWrapper>
   );
 };

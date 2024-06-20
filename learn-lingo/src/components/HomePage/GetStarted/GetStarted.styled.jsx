@@ -17,7 +17,7 @@ export const UnlockPotential = styled.div`
 export const Decor = styled.span`
   font-style: italic;
   font-weight: 400;
-  background-color: ${({ theme }) => theme.colors.primaryActiv};
+  background-color: var(--primary-activ);
   border-radius: 12px;
   margin-right: 12px;
   margin-left: 12px;

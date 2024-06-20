@@ -46,14 +46,11 @@ export const nextData = async () => {
   if (arr.exists()) {
     const data = arr.val();
     const dataArray = Object.values(data);
-    console.log('nextData', dataArray);
-
     lastKey = Object.keys(data)[dataArray.length - 1];
 
     return dataArray;
   } else {
     toast.warn('No more data');
-    // lastKey = '';
     return [];
   }
 };
@@ -71,7 +68,6 @@ export const favoritesData = async (searchKey, searchValue) => {
 
   if (arr.exists()) {
     const data = Object.values(arr.val());
-    console.log('qwqwwq', data[0].favorites);
     return data[0].favorites;
   } else {
     alert('error');
@@ -110,9 +106,8 @@ export const filterRecordLanguages = async (field, searchValue) => {
       }
     });
   } else {
-    console.log('No data available');
+    toast.warn('No data available');
   }
-  // console.log('filteredTeachers', filteredTeachers);
   return filteredTeachers;
 };
 ////////////////////////////////
@@ -162,9 +157,8 @@ export const filterRecords = async filters => {
       }
     });
   } else {
-    console.log('No data available');
+    toast.warn('No data available');
   }
 
-  console.log('filteredTeachers', filteredTeachers);
   return filteredTeachers;
 };

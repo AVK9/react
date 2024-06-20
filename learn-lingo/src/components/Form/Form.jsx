@@ -39,11 +39,9 @@ export const Form = ({ isRegistration }) => {
     if (isRegistration) {
       toast.success(`${name} congretilation you register success`);
       navigate({ TEACHERS_ROUTE });
-      console.log('Register:', data);
 
       handleRegister(email, password, name);
     } else {
-      console.log('Login:', data);
       handleLogin(email, password);
       navigate({ TEACHERS_ROUTE });
     }

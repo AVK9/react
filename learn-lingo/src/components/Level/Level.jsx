@@ -16,8 +16,7 @@ const Level = ({ item, selectedLevel }) => {
     <Item
       levels="true"
       style={{
-        background:
-          selectedLevel === item ? theme.colors.primary : 'transparent',
+        background: selectedLevel === item ? 'var(--primary)' : 'transparent',
         border:
           selectedLevel === item ? 'none' : '1px solid rgba(18, 20, 23, 0.2)',
       }}
