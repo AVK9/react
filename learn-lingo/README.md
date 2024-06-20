@@ -1,18 +1,13 @@
-Create an application for a company offering to use the services of online
-language teachers. The application consists of 3 pages: • a "Home" page with a
-list of company benefits and a link to start working with the application and
-redirects to the "Teachers" page. Stylization should be implemented using the
-examples given in the layout with different variations of the palette, or with
-the help of a prototype (which will make the "project" more unique). • the
-"Teachers" page, which contains a list of teachers that the user can filter by
-the language of teaching, by the level of knowledge of the students with whom
-the teacher works and the price per hour of class. • private page "Favorites"
-with teachers who were added by the user to "favorites"
+# Create an application for a company offering to use the services of online language teachers. The application consists of 3 pages:
+
+## "Home" page with a list of company benefits and a link to start working with the application and redirects to the "Teachers" page. Stylization should be implemented using the examples given in the layout with different variations of the palette, or with the help of a prototype (which will make the "project" more unique).
+
+## the "Teachers" page, which contains a list of teachers that the user can filter by the language of teaching, by the level of knowledge of the students with whom the teacher works and the price per hour of class. • private page "Favorites" with teachers who were added by the user to "favorites"
 
 **Layout**
 https://www.figma.com/design/kUyusReNv4HFhqzON6rKBp/Learn-Lingo-(Copy)?node-id=13-1083&t=mOqIq2ZKUNxFVGZe-0
 
-**Technical task **
+**Technical task**
 https://docs.google.com/document/d/1ZB_MFgnnJj7t7OXtv5hESSwY6xRgVoACZKzgZczWc3Y/edit?pli=1
 
 1.  With the help of firebase_DB, add the possibility of authorization to the
@@ -66,13 +61,18 @@ https://docs.google.com/document/d/1ZB_MFgnnJj7t7OXtv5hESSwY6xRgVoACZKzgZczWc3Y/
     instruction; according to the level of knowledge of students with whom the
     teacher works; at the price per hour of class.
 
-Performance criteria ● The layout from 320x to 1440x is rubber (must also
-display correctly on mobile and tablet devices), semantic and valid. ● No errors
-in the browser console. ● The work is done on native JS using a bundler (Vite,
-Parcel, etc.) or on React. ● User authorization and working with the collection
-are implemented using firebase ● Interactivity works according to the
-specification. ● The code is formatted and uncommented. ● The repository should
-have a README.md with a description of the project: what this project is about,
-basic technologies, layout, TK. ● The project is deployed on github pages,
-netlify.com or other third-party hosting firebase documentation for working with
-REST https://firebase.google.com/docs/reference
+# Performance criteria
+
+## The layout from 320x to 1440x is rubber (must also display correctly on mobile and tablet devices), semantic and valid.
+
+## No errors in the browser console.
+
+## The work is done on native JS using a bundler (Vite, Parcel, etc.) or on React.
+
+## User authorization and working with the collection are implemented using firebase
+
+## Interactivity works according to the specification. ● The code is formatted and uncommented.
+
+## The repository should have a README.md with a description of the project: what this project is about, basic technologies, layout, TK.
+
+## The project is deployed on github pages, netlify.com or other third-party hosting firebase documentation for working with REST https://firebase.google.com/docs/reference
