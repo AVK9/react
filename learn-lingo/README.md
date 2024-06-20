@@ -1,8 +1,14 @@
+# Learn Lingo
+
+![https://learnlingo-nine.vercel.app/static/media/logo.d34743a6d4214a7edfd037c74ed2da93.svg](https://learnlingo-nine.vercel.app/)
+
 ## Create an application for a company offering to use the services of online language teachers. The application consists of 3 pages:
 
 ### "Home" page with a list of company benefits and a link to start working with the application and redirects to the "Teachers" page. Stylization should be implemented using the examples given in the layout with different variations of the palette, or with the help of a prototype (which will make the "project" more unique).
 
-### the "Teachers" page, which contains a list of teachers that the user can filter by the language of teaching, by the level of knowledge of the students with whom the teacher works and the price per hour of class. • private page "Favorites" with teachers who were added by the user to "favorites"
+### the "Teachers" page, which contains a list of teachers that the user can filter by the language of teaching, by the level of knowledge of the students with whom the teacher works and the price per hour of class.
+
+### private page "Favorites" with teachers who were added by the user to "favorites"
 
 **Layout**
 https://www.figma.com/design/kUyusReNv4HFhqzON6rKBp/Learn-Lingo-(Copy)?node-id=13-1083&t=mOqIq2ZKUNxFVGZe-0
@@ -71,7 +77,9 @@ https://docs.google.com/document/d/1ZB_MFgnnJj7t7OXtv5hESSwY6xRgVoACZKzgZczWc3Y/
 
 ### User authorization and working with the collection are implemented using firebase
 
-### Interactivity works according to the specification. ● The code is formatted and uncommented.
+### Interactivity works according to the specification.
+
+### The code is formatted and uncommented.
 
 ### The repository should have a README.md with a description of the project: what this project is about, basic technologies, layout, TK.
 
