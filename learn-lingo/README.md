@@ -1,6 +1,9 @@
+<p align="center">
+  <a href="https://learnlingo-nine.vercel.app/" target="_blank">
+    <img src="./src/assets/img/Head.svg" alt="learnlingo" width="30">
 # Learn Lingo
-
-!["./src/assets/img/Head.svg"](https://learnlingo-nine.vercel.app/)
+  </a>
+</p>
 
 ### Create an application for a company offering to use the services of online language teachers. The application consists of 3 pages:
 
@@ -61,7 +64,7 @@ https://docs.google.com/document/d/1ZB_MFgnnJj7t7OXtv5hESSwY6xRgVoACZKzgZczWc3Y/
     he has added to his "favorites". In terms of styling, the page should be
     similar to the "Teachers" page.
 
-        Tasks with an asterisk*
+**Tasks with an asterisk**
 
     Create routing using React Router. Add filtering: by language of
     instruction; according to the level of knowledge of students with whom the
