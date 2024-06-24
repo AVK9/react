@@ -8,8 +8,23 @@ export const LoginWithGoogle = () => {
   const { auth } = useContext(Context);
 
   const login = async () => {
+    // const provider = new firebase.auth.GoogleAuthProvider();
+    // const { user } = await auth.signInWithPopup(provider);
+    // console.log(user);
+
+    // Створюємо новий провайдер для Google аутентифікації
     const provider = new firebase.auth.GoogleAuthProvider();
-    const { user } = await auth.signInWithPopup(provider);
+
+    try {
+      // Використовуємо метод signInWithPopup для авторизації
+      const { user } = await firebase.auth().signInWithPopup(provider);
+
+      // Виводимо інформацію про користувача в консоль
+      console.log(user);
+    } catch (error) {
+      // Обробляємо можливі помилки
+      console.error('Error during sign-in:', error);
+    }
   };
 
   return (

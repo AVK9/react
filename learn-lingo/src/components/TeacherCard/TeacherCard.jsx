@@ -64,43 +64,45 @@ export const TeacherCard = ({ selectedLevel, teacher }) => {
   const [readMore, setReadMore] = useState(false);
 
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      if (user) {
-        const data = await favoritesData('email', user.email);
-        setIsFavorite(
-          data?.some(i => i.surname === surname && i.name === name)
-        );
+      if (user && !isFetching) {
+        setIsFetching(true);
+        try {
+          const data = await favoritesData('email', user.email);
+          setIsFavorite(
+            data?.some(i => i.surname === surname && i.name === name)
+          );
+        } catch (error) {
+          console.error('Error fetching favorites:', error);
+        } finally {
+          setIsFetching(false);
+        }
       }
     };
     fetchData();
   }, [user, surname, name]);
 
-  const fetchData = async () => {
-    if (user) {
+  const handleFavoriteToggle = async teacher => {
+    if (!user) {
+      toast.warn('This functionality is available only to authorized users');
+      return;
+    }
+    try {
+      if (isFavorite) {
+        await findAndDeleteRecord('email', user.email, teacher);
+      } else {
+        await findAndUpdateRecord('email', user.email, teacher);
+      }
       const data = await favoritesData('email', user.email);
       setIsFavorite(data?.some(i => i.surname === surname && i.name === name));
+    } catch (error) {
+      toast.error('Error updating favorites:', error);
     }
   };
 
-  const addToFavoretes = async teacher => {
-    if (user) {
-      await findAndUpdateRecord('email', user.email, teacher);
-      fetchData();
-    } else {
-      toast.warn('This functionality is available only to authorized users');
-    }
-  };
-
-  const delFavorite = async teacher => {
-    if (user) {
-      await findAndDeleteRecord('email', user.email, teacher);
-      fetchData();
-    } else {
-      toast.warn('This functionality is available only to authorized users');
-    }
-  };
   return (
     <ItemBox>
       <>
@@ -131,21 +133,13 @@ export const TeacherCard = ({ selectedLevel, teacher }) => {
             </InfoBoxItem>
           </InfoBox>
           <div>
-            {isFavorite && (
-              <button type="button" onClick={() => delFavorite(teacher)}>
-                <IconSvg icon="heart" stroke="#ff0000" fill="#ff0000" />
-              </button>
-            )}
-            {!isFavorite && (
-              <button
-                type="button"
-                onClick={() => {
-                  addToFavoretes(teacher);
-                }}
-              >
-                <IconSvg icon="heart" stroke="#ffc531" />
-              </button>
-            )}
+            <button type="button" onClick={() => handleFavoriteToggle(teacher)}>
+              <IconSvg
+                icon="heart"
+                stroke={isFavorite ? '#ff0000' : '#ffc531'}
+                fill={isFavorite ? '#ff0000' : 'none'}
+              />
+            </button>
           </div>
         </HeadBox>
         <Name>

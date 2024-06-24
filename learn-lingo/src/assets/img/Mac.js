@@ -6,7 +6,7 @@ export const MySVG = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g clip-path="url(#clip0_4_428)">
+    <g clipPath="url(#clip0_4_428)">
       <path
         d="M22.0579 0C18.5133 0 15.64 2.87903 15.64 6.43046V240.821C15.64 244.372 18.5133 247.251 22.0579 247.251H368.942C372.487 247.251 375.36 244.372 375.36 240.821V6.43046C375.36 2.87903 372.487 0 368.942 0H22.0579Z"
         fill="url(#paint0_linear_4_428)"
@@ -29,8 +29,8 @@ export const MySVG = () => (
         y2="247.251"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="var(--mac)" />
-        <stop offset="1" stop-color="var(--mac-darck)" />
+        <stop stopColor="var(--mac)" />
+        <stop offset="1" stopColor="var(--mac-darck)" />
       </linearGradient>
       <linearGradient
         id="paint1_linear_4_428"
@@ -40,8 +40,8 @@ export const MySVG = () => (
         y2="121.053"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="var(--primary-activ)" />
-        <stop offset="1" stop-color="var(--mac-lite)" />
+        <stop stopColor="var(--primary-activ)" />
+        <stop offset="1" stopColor="var(--mac-lite)" />
       </linearGradient>
       <linearGradient
         id="paint2_linear_4_428"
@@ -51,8 +51,8 @@ export const MySVG = () => (
         y2="121.053"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="var(--primary-activ)" />
-        <stop offset="1" stop-color="var(--mac-lite)" />
+        <stop stopColor="var(--primary-activ)" />
+        <stop offset="1" stopColor="var(--mac-lite)" />
       </linearGradient>
       <clipPath id="clip0_4_428">
         <rect

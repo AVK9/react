@@ -4,7 +4,7 @@ import GetStarted from 'components/HomePage/GetStarted/GetStarted';
 import ImgBlock from 'components/HomePage/ImgBlock/ImgBlock';
 import Advantages from 'components/HomePage/Advantages/Advantages';
 import { Container } from 'components/common/Section/Container';
-import HeaderMob from 'components/Header/HeaderMob';
+// import AdditionalHTML from 'components/AdditionalHTML';
 
 const HomePage = () => {
   return (
@@ -18,6 +18,7 @@ const HomePage = () => {
       <Section className="advantages">
         <Advantages />
       </Section>
+      {/* <AdditionalHTML /> */}
     </Container>
   );
 };

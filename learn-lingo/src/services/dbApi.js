@@ -56,6 +56,7 @@ export const nextData = async () => {
 };
 
 export const favoritesData = async (searchKey, searchValue) => {
+  console.log('favoritesData function called');
   const db = getDatabase(app);
   const dbRef = query(ref(db, 'users'));
 
@@ -68,9 +69,11 @@ export const favoritesData = async (searchKey, searchValue) => {
 
   if (arr.exists()) {
     const data = Object.values(arr.val());
-    return data[0].favorites;
+    return data[0]?.favorites;
   } else {
-    alert('error');
+    // alert('error');
+    console.log('error - error');
+    toast.error('error');
   }
 };
 

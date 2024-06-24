@@ -5,13 +5,12 @@ export const NOTFAUND_ROUTE = '/404';
 
 export const languages = [
   { label: 'Languages', value: '' },
-  { label: 'Languages', value: 'Chinese' },
   { label: 'Languages', value: 'English' },
   { label: 'Languages', value: 'French' },
   { label: 'Languages', value: 'German' },
   { label: 'Languages', value: 'Italian' },
   { label: 'Languages', value: 'Korean' },
-  { label: 'Languages', value: 'Mandarin' },
+  { label: 'Languages', value: 'Mandarin Chinese' },
   { label: 'Languages', value: 'Polish' },
   { label: 'Languages', value: 'Spanish' },
   { label: 'Languages', value: 'Ukrainian' },
