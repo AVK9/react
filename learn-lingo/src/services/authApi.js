@@ -48,8 +48,7 @@ export const handleRegister = (email, password, name) => {
 export const handleLogin = (email, password) => {
   const auth = getAuth();
   signInWithEmailAndPassword(auth, email, password)
-    .then(({ user }) => {
-    })
+    .then(({ user }) => {})
     .catch(error => toast.error('Invalid login or password'));
 };
 //------------------
@@ -65,6 +64,17 @@ export function getUserData() {
     return userData;
   }
 }
+//////////////////////////////////////////////////////////////////
+export const googleRegister = (email, name) => {
+  // const auth = getAuth();
+  const db = getDatabase(app);
+  const newDocRef = push(ref(db, 'users/'));
+  set(newDocRef, {
+    name,
+    email,
+    favorites: [],
+  });
+};
 /////////////////////////////////////////////////////////////////
 export const findAndUpdateRecord = async (searchKey, searchValue, newItem) => {
   const db = getDatabase(app);

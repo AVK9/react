@@ -5,7 +5,7 @@ const defaultTheme = isTheme ? 'yellow' : 'green';
 
 export const useColor = () => {
   const [isTheme, setIsTheme] = useState(
-    localStorage.getItem('app-theme') || defaultTheme
+    localStorage.getItem('app-theme') || 'yellow'
   );
 
   useLayoutEffect(() => {

@@ -3,6 +3,7 @@ import firebase from 'firebase/compat/app';
 import GoogleIcon from '@mui/icons-material/Google';
 import { Context } from 'index';
 import { Button } from './Button';
+import { googleRegister } from 'services/authApi';
 
 export const LoginWithGoogle = () => {
   const { auth } = useContext(Context);
@@ -21,11 +22,14 @@ export const LoginWithGoogle = () => {
 
       // Виводимо інформацію про користувача в консоль
       console.log(user);
+      googleRegister(user._delegate.email, user._delegate.displayName);
     } catch (error) {
       // Обробляємо можливі помилки
       console.error('Error during sign-in:', error);
     }
   };
+
+  console.log('auth', auth);
 
   return (
     <>

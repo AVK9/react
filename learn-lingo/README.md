@@ -1,7 +1,7 @@
 <p align="center">
   <a href="https://learnlingo-nine.vercel.app/" target="_blank">
-    <img src="./src/assets/img/Head.svg" alt="learnlingo" width="30">
-# Learn Lingo
+    <img src="./src/assets/img/logo.svg" alt="learnlingo" width="30">
+Learn Lingo
   </a>
 </p>
 
@@ -64,26 +64,24 @@ https://docs.google.com/document/d/1ZB_MFgnnJj7t7OXtv5hESSwY6xRgVoACZKzgZczWc3Y/
     he has added to his "favorites". In terms of styling, the page should be
     similar to the "Teachers" page.
 
-**Tasks with an asterisk**
-
-    Create routing using React Router. Add filtering: by language of
-    instruction; according to the level of knowledge of students with whom the
-    teacher works; at the price per hour of class.
+**Tasks with an asterisk** Create routing using React Router. Add filtering: by
+language of instruction; according to the level of knowledge of students with
+whom the teacher works; at the price per hour of class.
 
 ### Performance criteria
 
-#### The layout from 320x to 1440x is rubber (must also display correctly on mobile and tablet devices), semantic and valid.
+##### The layout from 320x to 1440x is rubber (must also display correctly on mobile and tablet devices), semantic and valid.
 
-#### No errors in the browser console.
+##### No errors in the browser console.
 
-#### The work is done on native JS using a bundler (Vite, Parcel, etc.) or on React.
+##### The work is done on native JS using a bundler (Vite, Parcel, etc.) or on React.
 
-#### User authorization and working with the collection are implemented using firebase
+##### User authorization and working with the collection are implemented using firebase
 
-#### Interactivity works according to the specification.
+##### Interactivity works according to the specification.
 
-#### The code is formatted and uncommented.
+##### The code is formatted and uncommented.
 
-#### The repository should have a README.md with a description of the project: what this project is about, basic technologies, layout, TK.
+##### The repository should have a README.md with a description of the project: what this project is about, basic technologies, layout, TK.
 
-#### The project is deployed on github pages, netlify.com or other third-party hosting firebase documentation for working with REST https://firebase.google.com/docs/reference
+##### The project is deployed on github pages, netlify.com or other third-party hosting firebase documentation for working with REST https://firebase.google.com/docs/reference
